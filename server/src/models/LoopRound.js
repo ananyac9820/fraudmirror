@@ -6,6 +6,7 @@ const loopRoundSchema = new mongoose.Schema(
     attacksGenerated: Number,
     detected: Number,
     detectionRate: Number,
+    falsePositiveRate: Number, // share of legit sample flagged with this round's config
     perType: mongoose.Schema.Types.Mixed, // { card_testing: { generated, detected, rate } }
     mutatedParams: mongoose.Schema.Types.Mixed, // { attacker: [...], defender: [...] }
   },

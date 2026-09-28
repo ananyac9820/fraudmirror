@@ -65,6 +65,7 @@ export interface LoopRound {
   attacksGenerated: number;
   detected: number;
   detectionRate: number;
+  falsePositiveRate: number;
   perType: Record<string, { generated: number; detected: number; rate: number }>;
   mutatedParams: { attacker: string[]; defender: string[] };
   createdAt: string;
