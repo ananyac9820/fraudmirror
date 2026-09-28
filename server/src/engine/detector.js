@@ -1,8 +1,8 @@
 import { CITIES, distanceKm } from './data.js';
 
 /**
- * All detector knobs in one object. Loop rounds adjust this object in place,
- * so the live detector immediately benefits from what the defender learned.
+ * All detector knobs in one object. The live detector uses one copy; the Loop
+ * tunes its own candidate copy in a sandbox.
  */
 export function defaultDetectorConfig() {
   return {
@@ -110,7 +110,7 @@ export class Detector {
     // 2. Repeated micro-amounts (card testing)
     if (tx.amount <= P.microAmount) {
       const micro = p.recent.filter((r) => r.amount <= P.microAmount && ts - r.ts <= P.microWindowSec * 1000).length + 1;
-      if (micro >= P.microCount) hit('microRepeat', `${micro} micro-payments (≤ ${inr(P.microAmount)}) in ${secs(P.microWindowSec * 1000)} — card-testing pattern`);
+      if (micro >= P.microCount) hit('microRepeat', `${micro} micro-payments (≤ ${inr(P.microAmount)}) in ${secs(P.microWindowSec * 1000)}, a card-testing pattern`);
     }
 
     // 3. New device / new city (only meaningful once the account has history)
@@ -131,7 +131,7 @@ export class Detector {
       const km = distanceKm(p.last.city, tx.city);
       const hours = Math.max(ts - p.last.ts, 1000) / 3600000;
       if (km > 100 && km / hours > P.travelMaxKmh) {
-        hit('impossibleTravel', `${p.last.city} → ${tx.city}: ${Math.round(km).toLocaleString('en-IN')} km in ${secs(ts - p.last.ts)}`);
+        hit('impossibleTravel', `${p.last.city} to ${tx.city}: ${Math.round(km).toLocaleString('en-IN')} km in ${secs(ts - p.last.ts)}`);
       }
     }
 

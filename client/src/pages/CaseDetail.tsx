@@ -3,24 +3,21 @@ import { Link, useParams } from 'react-router-dom';
 import { api } from '../lib/api';
 import { fmtDateTime, fmtINR, fmtTime } from '../lib/format';
 import { ATTACK_LABELS, type Alert, type Tx } from '../lib/types';
-import RiskBadge from '../components/RiskBadge';
+import { NumberedList, PageHeader, Risk, Section, Skeleton } from '../components/ui';
 
 interface CaseFile {
   alert: Alert;
   transaction: Tx;
   history: Tx[];
   groundTruth: { isFraud: boolean; attackType: string | null } | null;
-  correct?: boolean;
 }
 
-function Field({ label, value, mono = false }: { label: string; value: React.ReactNode; mono?: boolean }) {
-  return (
-    <div>
-      <div className="text-[11px] uppercase tracking-wider text-slate-500">{label}</div>
-      <div className={`mt-0.5 text-slate-100 ${mono ? 'font-mono text-sm' : ''}`}>{value}</div>
-    </div>
-  );
-}
+const Fact = ({ label, value, mono = false }: { label: string; value: React.ReactNode; mono?: boolean }) => (
+  <div className="border-b border-line py-3">
+    <dt className="text-[12px] text-muted">{label}</dt>
+    <dd className={`mt-1 ${mono ? 'font-mono text-[13px]' : 'text-[14px]'}`}>{value}</dd>
+  </div>
+);
 
 export default function CaseDetail() {
   const { id } = useParams();
@@ -36,8 +33,8 @@ export default function CaseDetail() {
   const review = async (decision: 'confirmed_fraud' | 'false_positive') => {
     setBusy(true);
     try {
-      const r = await api<CaseFile & { correct: boolean }>(`/alerts/${id}/review`, { method: 'PATCH', body: { decision, note } });
-      setData((d) => (d ? { ...d, alert: r.alert, transaction: r.transaction, groundTruth: r.groundTruth, correct: r.correct } : d));
+      const r = await api<CaseFile>(`/alerts/${id}/review`, { method: 'PATCH', body: { decision, note } });
+      setData((d) => (d ? { ...d, alert: r.alert, transaction: r.transaction, groundTruth: r.groundTruth } : d));
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -45,167 +42,148 @@ export default function CaseDetail() {
     }
   };
 
-  if (error) return <div className="panel p-6 text-rose-300">{error}</div>;
-  if (!data) return <div className="panel p-6 text-slate-400">Loading case file…</div>;
+  const back = (
+    <Link to="/alerts" className="link mt-8 inline-block text-[13px]">
+      Back to alert queue
+    </Link>
+  );
+
+  if (error)
+    return (
+      <>
+        {back}
+        <p className="py-10 text-signal">{error}</p>
+      </>
+    );
+  if (!data)
+    return (
+      <div aria-label="Loading">
+        {back}
+        <Skeleton className="mt-10 h-14 w-80" />
+        <Skeleton className="mt-8 h-40 w-full" />
+      </div>
+    );
+
   const { alert, transaction: tx, history, groundTruth } = data;
   const open = alert.status === 'open';
+  const right = groundTruth ? (alert.status === 'confirmed_fraud') === groundTruth.isFraud : null;
 
   return (
-    <div className="flex flex-col gap-4">
-      <Link to="/alerts" className="w-fit text-sm text-slate-400 hover:text-accent">
-        ← Back to alert queue
-      </Link>
+    <>
+      {back}
+      <PageHeader
+        eyebrow={`Case ${tx.txId}, risk ${alert.riskScore}`}
+        serif="Suspected"
+        sans={(ATTACK_LABELS[alert.suspectedPattern] || alert.suspectedPattern).toLowerCase()}
+      />
 
-      <div className="flex flex-wrap items-center gap-3">
-        <RiskBadge score={alert.riskScore} className="!text-lg !px-3" />
-        <div>
-          <div className="panel-title">Case file · {tx.txId}</div>
-          <h1 className="text-xl font-semibold text-white sm:text-2xl">
-            Suspected <span className="text-accent">{ATTACK_LABELS[alert.suspectedPattern] || alert.suspectedPattern}</span>
-          </h1>
-        </div>
-      </div>
+      <div className="grid gap-x-16 lg:grid-cols-[1fr_340px]">
+        <div className="min-w-0">
+          <Section title="Transaction">
+            <dl className="grid grid-cols-2 gap-x-8 sm:grid-cols-3">
+              <Fact label="Amount" value={<span className="text-[22px] text-accent">{fmtINR(tx.amount)}</span>} mono />
+              <Fact label="Time" value={fmtDateTime(tx.timestamp)} />
+              <Fact label="Type" value={tx.txType} />
+              <Fact label="Account" value={tx.accountId} mono />
+              <Fact label="Account age" value={`${tx.accountAgeDays ?? 'unknown'} days`} />
+              <Fact label="Merchant" value={tx.merchant} />
+              <Fact label="Channel" value={tx.channel.toUpperCase()} />
+              <Fact label="Device" value={tx.deviceId} mono />
+              <Fact label="City" value={tx.city} />
+              {tx.counterpartyId && <Fact label="Sent to" value={tx.counterpartyId} mono />}
+            </dl>
+          </Section>
 
-      <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="flex min-w-0 flex-col gap-4">
-          <div className="panel grid grid-cols-2 gap-4 p-5 sm:grid-cols-3">
-            <Field label="Amount" value={<span className="text-xl text-accent">{fmtINR(tx.amount)}</span>} mono />
-            <Field label="Time" value={fmtDateTime(tx.timestamp)} />
-            <Field label="Type" value={tx.txType} />
-            <Field label="Account" value={tx.accountId} mono />
-            <Field label="Account age" value={`${tx.accountAgeDays ?? '–'} days`} />
-            <Field label="Merchant" value={`${tx.merchant} · ${tx.merchantCategory}`} />
-            <Field label="Channel" value={tx.channel.toUpperCase()} />
-            <Field label="Device" value={tx.deviceId} mono />
-            <Field label="City" value={tx.city} />
-            {tx.counterpartyId && <Field label="Sent to" value={tx.counterpartyId} mono />}
-          </div>
+          <Section title={`Why it was flagged, ${alert.reasons.length} signals`}>
+            <NumberedList items={alert.reasons} />
+          </Section>
 
-          <div className="panel p-5">
-            <div className="panel-title mb-3">Why the detector flagged this ({alert.reasons.length} signals)</div>
-            <ul className="flex flex-col gap-2">
-              {alert.reasons.map((r) => (
-                <li key={r} className="flex items-start gap-3 rounded-lg border border-white/5 bg-black/30 px-3 py-2 text-sm text-slate-200">
-                  <span className="mt-0.5 text-accent">▸</span>
-                  {r}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="panel overflow-hidden">
-            <div className="panel-title px-5 pt-4">Account history · last {history.length} transactions</div>
+          <Section title={`Account history, last ${history.length}`}>
             <div className="overflow-x-auto">
-              <table className="mt-2 w-full min-w-[560px] text-sm">
-                <thead className="text-left text-[11px] uppercase tracking-wider text-slate-500">
+              <table className="data min-w-[520px]">
+                <thead>
                   <tr>
-                    <th className="px-4 py-2">Time</th>
-                    <th className="px-4 py-2">Merchant</th>
-                    <th className="px-4 py-2">City</th>
-                    <th className="px-4 py-2">Device</th>
-                    <th className="px-4 py-2 text-right">Amount</th>
-                    <th className="px-4 py-2 text-center">Risk</th>
+                    <th>Time</th>
+                    <th>Merchant</th>
+                    <th>City</th>
+                    <th>Device</th>
+                    <th className="!text-right">Amount</th>
+                    <th className="!text-right">Risk</th>
                   </tr>
                 </thead>
                 <tbody>
                   {history.map((h) => (
-                    <tr key={h._id} className="border-t border-white/[0.04]" title={h.reasons.join('\n')}>
-                      <td className="px-4 py-2 font-mono text-xs text-slate-400">{fmtTime(h.timestamp)}</td>
-                      <td className="px-4 py-2 text-slate-200">{h.merchant}</td>
-                      <td className={`px-4 py-2 ${h.city !== tx.city ? 'text-amber-300' : 'text-slate-300'}`}>{h.city}</td>
-                      <td className={`px-4 py-2 font-mono text-xs ${h.deviceId !== tx.deviceId ? 'text-slate-500' : 'text-accent'}`}>{h.deviceId}</td>
-                      <td className="px-4 py-2 text-right font-mono text-slate-100">{fmtINR(h.amount)}</td>
-                      <td className="px-4 py-2 text-center">
-                        <RiskBadge score={h.riskScore} />
+                    <tr key={h._id} title={h.reasons.join('\n')}>
+                      <td className="font-mono text-[12px] text-muted">{fmtTime(h.timestamp)}</td>
+                      <td>{h.merchant}</td>
+                      <td className={h.city !== tx.city ? 'text-accent' : 'text-muted'}>{h.city}</td>
+                      <td className={`font-mono text-[12px] ${h.deviceId === tx.deviceId ? 'text-ink' : 'text-muted'}`}>{h.deviceId}</td>
+                      <td className="text-right font-mono">{fmtINR(h.amount)}</td>
+                      <td className="text-right">
+                        <Risk score={h.riskScore} />
                       </td>
                     </tr>
                   ))}
                   {history.length === 0 && (
                     <tr>
-                      <td colSpan={6} className="px-4 py-6 text-center text-slate-500">
-                        No earlier transactions — this account has no history.
+                      <td colSpan={6} className="py-8 text-center text-muted">
+                        No earlier transactions. This account has no history.
                       </td>
                     </tr>
                   )}
                 </tbody>
               </table>
             </div>
-          </div>
+          </Section>
         </div>
 
-        <div className="flex flex-col gap-4">
-          <div className="panel p-5" style={{ boxShadow: open ? 'var(--glow)' : undefined }}>
-            <div className="panel-title mb-3">Analyst decision</div>
-            {open ? (
-              <>
-                <textarea
-                  value={note}
-                  onChange={(e) => setNote(e.target.value)}
-                  rows={4}
-                  placeholder="Case note: what convinced you?"
-                  className="w-full rounded-lg border border-white/10 bg-black/40 px-3 py-2 text-sm text-white outline-none focus:border-accent"
-                />
-                <div className="mt-3 grid grid-cols-2 gap-2">
-                  <button
-                    disabled={busy}
-                    onClick={() => review('confirmed_fraud')}
-                    className="rounded-lg bg-rose-500 px-3 py-2.5 text-sm font-semibold text-white hover:bg-rose-400 disabled:opacity-50"
-                  >
-                    Confirm fraud
-                  </button>
-                  <button
-                    disabled={busy}
-                    onClick={() => review('false_positive')}
-                    className="rounded-lg border border-white/20 px-3 py-2.5 text-sm font-semibold text-slate-200 hover:border-accent hover:text-accent disabled:opacity-50"
-                  >
-                    False positive
-                  </button>
-                </div>
-                <p className="mt-3 text-xs text-slate-500">Ground truth stays hidden until you decide.</p>
-              </>
-            ) : (
-              <div className="flex flex-col gap-2 text-sm">
-                <div>
-                  Decision:{' '}
-                  <span className={alert.status === 'confirmed_fraud' ? 'font-semibold text-rose-300' : 'font-semibold text-slate-200'}>
-                    {alert.status === 'confirmed_fraud' ? 'Confirmed fraud' : 'False positive'}
-                  </span>
-                </div>
-                <div className="text-slate-400">
-                  by {alert.reviewedByName} · {alert.reviewedAt && fmtDateTime(alert.reviewedAt)}
-                </div>
-                {alert.reviewNote && <div className="rounded-lg bg-black/30 px-3 py-2 text-slate-300">“{alert.reviewNote}”</div>}
+        <aside className="py-10">
+          <h2 className="eyebrow mb-6">Decision</h2>
+          {open ? (
+            <div className="flex flex-col gap-6">
+              <label className="block text-[12px] text-muted">
+                Case note
+                <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} className="field mt-1 resize-none" placeholder="What convinced you?" />
+              </label>
+              <div className="flex flex-wrap gap-3">
+                <button disabled={busy} onClick={() => review('confirmed_fraud')} className="btn btn-primary">
+                  Confirm fraud
+                </button>
+                <button disabled={busy} onClick={() => review('false_positive')} className="btn">
+                  False positive
+                </button>
               </div>
-            )}
-          </div>
+              <p className="text-[12.5px] text-muted">The ground truth stays hidden until you decide.</p>
+            </div>
+          ) : (
+            <dl>
+              <Fact label="Decision" value={alert.status === 'confirmed_fraud' ? 'Confirmed fraud' : 'False positive'} />
+              <Fact label="Reviewed by" value={`${alert.reviewedByName}, ${alert.reviewedAt ? fmtDateTime(alert.reviewedAt) : ''}`} />
+              {alert.reviewNote && <Fact label="Note" value={alert.reviewNote} />}
+            </dl>
+          )}
 
           {groundTruth && (
-            <div
-              className={`panel row-in p-5 ${
-                (alert.status === 'confirmed_fraud') === groundTruth.isFraud ? 'border-emerald-400/40' : 'border-amber-400/40'
-              }`}
-            >
-              <div className="panel-title mb-2">Ground truth revealed</div>
-              <div className="text-lg font-semibold text-white">
+            <div className="row-in mt-10 border-t border-line-strong pt-6">
+              <p className="eyebrow">Ground truth</p>
+              <p className="mt-3 text-[20px] font-light leading-snug">
                 {groundTruth.isFraud ? (
                   <>
-                    Real fraud: <span className="text-rose-300">{ATTACK_LABELS[groundTruth.attackType || ''] || groundTruth.attackType}</span>
+                    Real fraud, <span className="display text-[24px]">{(ATTACK_LABELS[groundTruth.attackType || ''] || '').toLowerCase()}</span>
                   </>
                 ) : (
-                  <span className="text-emerald-300">Legitimate customer transaction</span>
+                  <>
+                    A <span className="display text-[24px]">legitimate</span> customer payment
+                  </>
                 )}
-              </div>
-              <div
-                className={`mt-3 rounded-lg px-3 py-2 text-sm font-semibold ${
-                  (alert.status === 'confirmed_fraud') === groundTruth.isFraud ? 'bg-emerald-500/15 text-emerald-300' : 'bg-amber-500/15 text-amber-300'
-                }`}
-              >
-                {(alert.status === 'confirmed_fraud') === groundTruth.isFraud ? '✓ The analyst was right' : '✗ The analyst got this one wrong'}
-              </div>
+              </p>
+              <p className={`mt-4 text-[14px] ${right ? 'text-accent' : 'text-signal'}`}>
+                {right ? 'The analyst’s call was correct.' : 'The analyst’s call was wrong on this one.'}
+              </p>
             </div>
           )}
-        </div>
+        </aside>
       </div>
-    </div>
+    </>
   );
 }

@@ -10,8 +10,5 @@ export const fmtTime = (s: string) =>
 export const fmtDateTime = (s: string) =>
   new Date(s).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'medium', hour12: false });
 
-export const riskColor = (score: number) =>
-  score >= 80 ? 'text-rose-300 bg-rose-500/15 border-rose-500/40'
-  : score >= 60 ? 'text-orange-300 bg-orange-500/15 border-orange-500/40'
-  : score >= 30 ? 'text-yellow-200 bg-yellow-500/10 border-yellow-500/30'
-  : 'text-slate-400 bg-slate-500/10 border-slate-500/20';
+/** Risk is shown as a plain number; only the colour of the digits changes. */
+export const riskClass = (score: number) => (score >= 60 ? 'text-signal' : score >= 30 ? 'text-ink' : 'text-faint');

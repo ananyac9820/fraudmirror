@@ -2,7 +2,7 @@
 
 **A real-time attack-and-defend web platform for payment fraud.**
 
-FraudMirror is a web platform where a fraud team watches synthetic payment transactions stream in live. A rule-based detector scores every transaction from 0 to 100 and explains each flag in plain language. Analysts review flagged cases, and a red team launches simulated fraud attacks into the stream. The same data can be viewed in two modes. **Defender** mode (green/cyan) shows what was caught. **Attacker** mode (amber/magenta) shows what slipped through. An attack-and-defend **Loop** evolves attacks and detector rules against each other, round after round.
+FraudMirror is a web platform where a fraud team watches synthetic payment transactions stream in live. A rule-based detector scores every transaction from 0 to 100 and explains each flag in plain language. Analysts review flagged cases, and a red team launches simulated fraud attacks into the stream. The same data can be viewed in two modes. **Defender** mode (cool teal and sage) shows what was caught. **Attacker** mode (warm umber and ochre) shows what slipped through. An attack-and-defend **Loop** evolves attacks and detector rules against each other, round after round.
 
 > **All data is synthetic.** Every transaction comes from FraudMirror's own simulator. There is no real payment data and no real attack tooling: an "attack" is just a pattern in synthetic transaction records.
 
@@ -13,12 +13,14 @@ FraudMirror is a web platform where a fraud team watches synthetic payment trans
 - **Live transaction stream.** A server-side simulator generates 1–3 transactions every 800 ms. They cover Indian merchants, cities, UPI/card/netbanking and amounts in INR, and are pushed to the browser over Socket.io. New rows animate in, and the feed can be paused and resumed.
 - **Explainable detector.** Weighted rules cover velocity, micro-amount repetition, new device, new city, impossible travel, amount spikes, young accounts, mule pass-through and refund repetition. Every rule that fires adds a readable reason, for example *"7 transactions in 30 seconds"* or *"New device + new city"*. A score of 60 or more flags the transaction, creates an Alert and pushes it live.
 - **Six attack patterns.** Card testing, account takeover, velocity burst, impossible travel, mule chain and refund abuse. They appear as roughly 2% background fraud plus any bursts the red team launches.
-- **Dashboard.** KPI cards (transactions today, detected threats, open alerts, detection rate, ₹ protected) and live Recharts charts: transactions per minute, alerts by type and risk-score distribution.
+- **Overview.** Headline figures (transactions today, flagged, open alerts, detection rate, ₹ protected) and live Recharts charts: transactions per minute, alerts by type and risk-score distribution.
 - **Analyst case review.** The alert queue is sorted by risk and can be filtered by status and suspected type. Each case file shows the transaction, all reasons and the account's last 10 transactions. The analyst clicks **Confirm Fraud** or **False Positive** and adds a note. After review, the ground truth is revealed along with whether the analyst was right.
 - **Attack Lab (red team).** Pick an attack type and intensity, then launch. A live counter shows launched vs detected vs slipped.
-- **Mirror mode.** A global DEFENDER / ATTACKER toggle re-themes the whole app with an animated sweep and relabels the KPIs ("Detected threats" becomes "Undetected paths"). In attacker mode the live feed highlights fraud that slipped past the detector.
+- **Mirror mode.** A Defender / Attacker switch in the header fades the whole app from the cool palette to the warm one and rewrites the headings ("Detected threats" becomes "Undetected paths"). In attacker mode the live feed highlights fraud that slipped past the detector.
 - **Attack-and-defend Loop.** Each generation, the attacker mutates the attacks that were missed last round (slower, smaller, fewer tells). The defender then tightens the weights and thresholds of the rules that failed. The page charts detection rate per generation, alongside the false-positive cost measured on a sample of legitimate traffic.
-- **Role-based access.** JWT auth with three roles. The sidebar hides pages a role can't use, and the API enforces the same rules. Analysts never receive ground truth over the socket or REST until they have reviewed a case.
+- **Legal pages.** Privacy Policy and Terms of Service, linked from every page footer.
+- **Loading states.** Skeleton placeholders while data loads.
+- **Role-based access.** JWT auth with three roles. The navigation hides pages a role can't use, and the API enforces the same rules. Analysts never receive ground truth over the socket or REST until they have reviewed a case.
 
 ## Tech stack
 
@@ -28,6 +30,7 @@ FraudMirror is a web platform where a fraud team watches synthetic payment trans
 | State | Redux Toolkit (`auth`, `feed`, `ui` slices), react-redux |
 | Routing | React Router |
 | Styling | Tailwind CSS v4 (`@tailwindcss/vite`), CSS variables for mirror-mode theming |
+| Type | Instrument Serif (italic display), IBM Plex Sans, IBM Plex Mono (Google Fonts) |
 | Charts | Recharts |
 | Realtime | Socket.io (server) + socket.io-client |
 | Backend | Node.js + Express (JavaScript, ES modules) |
@@ -66,25 +69,51 @@ Open **http://localhost:5173**.
 - With no `MONGO_URI` set, the server starts an **in-memory MongoDB** and logs that it is doing so. Data resets on every restart, and 30 minutes of history is seeded each time so the charts are never empty.
 - To use a real database, copy `server/.env.example` to `server/.env` and set `MONGO_URI=mongodb://localhost:27017/fraudmirror` (MongoDB 5.0+). `.env` is git-ignored.
 
+## Public demo on GitHub Pages
+
+GitHub Pages can only host static files, so it cannot run the Express, MongoDB and Socket.io backend. The Pages build (`npm run build:pages`, Vite mode `pages`) swaps the network layer for an in-browser copy of the backend (`client/src/demo/backend.ts`). It imports the **same** simulator, detector and loop modules from `server/src/engine` and answers the same REST paths. Each visitor gets a private simulation that resets on reload. The full client/server version is what `npm run dev` runs.
+
+Deployment is automated by `.github/workflows/pages.yml`: every push to `main` builds the demo and publishes it.
+
+1. Create an empty **public** repository named `fraudmirror` on GitHub (no README).
+2. Push this project:
+   ```powershell
+   git remote add origin https://github.com/<your-username>/fraudmirror.git
+   git push -u origin main
+   ```
+3. On GitHub: **Settings > Pages > Build and deployment > Source: GitHub Actions**.
+4. Open the **Actions** tab and wait for "Deploy static demo to GitHub Pages" to finish (re-run it if it started before step 3). The site is then at `https://<your-username>.github.io/fraudmirror/`.
+
+To check the static build locally: `npm run build:pages --prefix client` then `npx vite preview --mode pages` inside `client/`, and open http://localhost:4173/fraudmirror/.
+
+## Design system
+
+The interface takes its mood from misty mountain landscapes: flat teal surfaces, hairline dividers, generous spacing, an italic serif for headlines over a light sans, and large light numerals. Deliberate constraints:
+
+- Square corners, no drop shadows, no glass or blur effects on UI surfaces, no icons or emoji.
+- One muted accent per mode; risk is shown as plain numbers whose colour changes above 60.
+- No hover animations. The only motion is new feed rows fading in, skeleton loaders, and the palette fade when the mirror flips.
+- The landscape is an inline SVG drawn from the same palette tokens, so it changes with the mode.
+
 ## Demo accounts
 
 Password for all accounts: **`demo123`**. They are also shown on the login page, where clicking one fills the form.
 
 | Email | Role | Can see |
 |---|---|---|
-| `analyst@fraudmirror.dev` | analyst | Dashboard, Live Feed, Alerts (review), Loop. No ground truth until a case is reviewed |
-| `redteam@fraudmirror.dev` | redteam | Dashboard, Live Feed (with ground truth), Attack Lab, Loop |
+| `analyst@fraudmirror.dev` | analyst | Overview, Live feed, Alerts (review), Loop. No ground truth until a case is reviewed |
+| `redteam@fraudmirror.dev` | redteam | Overview, Live feed (with ground truth), Attack lab, Loop |
 | `admin@fraudmirror.dev` | admin | Everything |
 
 ## Demo script (about 5 minutes)
 
-1. **Login page.** Point out the demo accounts. Sign in as **admin**.
-2. **Dashboard (Defender).** Walk through the KPIs, then the transactions-per-minute chart as it updates live, alerts by attack type and the risk distribution.
+1. **Sign-in page.** Point out the demo accounts. Sign in as **admin**.
+2. **Overview (Defender).** Walk through the headline figures, then the transactions-per-minute chart as it updates live, alerts by attack type and the risk distribution.
 3. **Live Feed.** Rows stream in. Click a red flagged row to show the detector's reasons. Press **Pause**, show the buffered counter, then **Resume**.
 4. **Alerts.** Open the highest-risk alert. Show the reasons and account history, write a note and click **Confirm Fraud**. The ground truth is revealed with "the analyst was right". Open a MakeMyTrip/Tanishq alert: these are often a legitimate traveller, so mark it **False Positive**.
 5. **Attack Lab.** Launch **Card testing · high** and watch the counter: most transactions are detected. Then launch **Card testing · low**: 0 detected, so the attack slips through.
-6. **Flip the mirror.** Click **ATTACKER** in the top bar. The theme sweeps to amber/magenta and the labels change to "Undetected paths". On the Live Feed, click **Fraud only**: the magenta rows are the low-intensity attack that slipped through.
-7. **Loop.** Press **Run round 1**, then press it 4–5 more times. Detection climbs from about 0% to about 75%, while the attacker keeps mutating. Point out the false-positive line: tighter rules cost some legitimate customers.
+6. **Flip the mirror.** Click **Attacker** in the header. The palette fades from teal to warm umber and the headings change to "Undetected paths". On the Live feed, click **Fraud only**: the highlighted rows are the low-intensity attack that slipped through.
+7. **Loop.** Press **Run generation 1**, then press it 4–5 more times. Detection climbs from about 0% to about 75%, while the attacker keeps mutating. Point out the false-positive line: tighter rules cost some legitimate customers.
 8. *(Optional)* Show the Postman collection: run **Login (admin)**, then **Get stats** and **Launch attack**.
 
 ## Design decisions / notes
@@ -115,8 +144,10 @@ fraudmirror/
 │  └─ src/
 │     ├─ store/            # Redux Toolkit slices
 │     ├─ lib/              # api, socket, types, formatting, theme
-│     ├─ components/       # Layout (top bar + sidebar), KpiCard, RiskBadge
-│     └─ pages/            # Login, Dashboard, LiveFeed, Alerts, CaseDetail, AttackLab, Loop
+│     ├─ components/       # Layout (header + footer), ui primitives, Mountains (SVG landscape)
+│     ├─ demo/             # in-browser backend used by the GitHub Pages build
+│     └─ pages/            # Login, Dashboard, LiveFeed, Alerts, CaseDetail, AttackLab, Loop, Legal
+├─ .github/workflows/pages.yml   # GitHub Pages deployment
 └─ postman/FraudMirror.postman_collection.json
 ```
 
@@ -148,6 +179,6 @@ Socket.io events (server → client): `tx` (batch of transactions), `alert`, `al
 - Email / SMS alert notifications
 - Admin user-management screen (users are seeded)
 - Spring Boot microservice
-- Deployment to a live URL
+- Deployment of the full client/server stack (only the in-browser demo is on GitHub Pages)
 - Automated test suite
 - Real bank or card data integration

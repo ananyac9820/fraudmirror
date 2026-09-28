@@ -8,6 +8,29 @@ const LEGIT_SAMPLE = 3000; // legit transactions scored each round to measure th
 
 const round2 = (n) => Math.round(n * 100) / 100;
 
+const ATTACK_LABELS = {
+  card_testing: 'card testing',
+  account_takeover: 'account takeover',
+  velocity_burst: 'velocity burst',
+  impossible_travel: 'impossible travel',
+  mule_chain: 'mule chain',
+  refund_abuse: 'refund abuse',
+};
+
+// Human-readable summary of attack parameters for the rounds table
+function describeParams(p) {
+  const parts = [];
+  if (p.count != null) parts.push(`${p.count} tx`);
+  if (p.hops != null) parts.push(`${p.hops} hops`);
+  if (p.paceMs != null) parts.push(`${(p.paceMs / 1000).toFixed(1)} s apart`);
+  if (p.maxAmount != null) parts.push(`up to ₹${p.maxAmount}`);
+  if (p.amount != null) parts.push(`₹${p.amount.toLocaleString('en-IN')}`);
+  if (p.amountMul != null) parts.push(`${p.amountMul}× usual spend`);
+  if (p.newDevice === false || p.newCity === false) parts.push('familiar device or city');
+  if (p.knownCities) parts.push('known cities only');
+  return parts.join(', ');
+}
+
 // How the attacker evolves an attack type that was MISSED last round:
 // it doubles down on stealth (slower, smaller, fewer tells).
 const ATTACKER_MUTATIONS = {
@@ -87,7 +110,7 @@ export class AttackDefendLoop {
     const attackerChanges = [];
     for (const t of this.missedLastRound) {
       this.attackerParams[t] = ATTACKER_MUTATIONS[t](this.attackerParams[t]);
-      attackerChanges.push(`${t}: ${JSON.stringify(this.attackerParams[t])}`);
+      attackerChanges.push(`${ATTACK_LABELS[t]}: ${describeParams(this.attackerParams[t])}`);
     }
 
     // 2. Generate and score a batch in a sandbox detector using the current candidate config

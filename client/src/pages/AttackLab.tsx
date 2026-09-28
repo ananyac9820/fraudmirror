@@ -4,32 +4,32 @@ import { fmtTime } from '../lib/format';
 import { ATTACK_DESCRIPTIONS, ATTACK_LABELS, ATTACK_TYPES, type AttackRun } from '../lib/types';
 import { useAppDispatch, useAppSelector } from '../store';
 import { attackUpdate } from '../store/feedSlice';
+import { Figures, PageHeader, Section, SkeletonRows } from '../components/ui';
 
 type Intensity = 'low' | 'medium' | 'high';
 const INTENSITY_NOTE: Record<Intensity, string> = {
-  low: 'Stealthy: slow pace, small amounts, familiar devices. Built to slip through.',
-  medium: 'Noticeable: faster, bigger, often a new device.',
-  high: 'Loud: rapid-fire burst with obvious red flags.',
+  low: 'Slow pace, small amounts, familiar devices. Built to slip under the thresholds.',
+  medium: 'Faster and larger, usually from a new device.',
+  high: 'A rapid burst with obvious warning signs.',
 };
-
-function Counter({ label, value, tone }: { label: string; value: number; tone: string }) {
-  return (
-    <div className="flex-1 rounded-xl border border-white/10 bg-black/30 p-4 text-center">
-      <div className={`font-mono text-4xl font-bold ${tone}`}>{value}</div>
-      <div className="mt-1 text-[11px] uppercase tracking-widest text-slate-500">{label}</div>
-    </div>
-  );
-}
+const PARAM_LABEL: Record<string, string> = {
+  count: 'transactions',
+  amountMul: '× usual spend',
+  hops: 'hops',
+  newDevice: 'new device',
+  newCity: 'new city',
+  knownCities: 'known cities only',
+};
 
 export default function AttackLab() {
   const [type, setType] = useState<string>('card_testing');
   const [intensity, setIntensity] = useState<Intensity>('medium');
   const [presets, setPresets] = useState<Record<string, Record<Intensity, Record<string, number | boolean>>>>({});
+  const [loaded, setLoaded] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [latestId, setLatestId] = useState<string | null>(null);
   const runsMap = useAppSelector((s) => s.feed.attackRuns);
-  const mode = useAppSelector((s) => s.ui.mode);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -37,11 +37,13 @@ export default function AttackLab() {
       setPresets(r.presets);
       r.runs.forEach((run) => dispatch(attackUpdate(run)));
       if (r.runs[0]) setLatestId(r.runs[0]._id);
+      setLoaded(true);
     });
   }, [dispatch]);
 
   const runs = useMemo(() => Object.values(runsMap).sort((a, b) => +new Date(b.startedAt) - +new Date(a.startedAt)), [runsMap]);
   const latest = latestId ? runsMap[latestId] : undefined;
+  const done = latest && latest.emitted >= latest.count;
 
   const launch = async () => {
     setBusy(true);
@@ -57,136 +59,126 @@ export default function AttackLab() {
     }
   };
 
-  const slipped = latest ? latest.emitted - latest.detectedCount : 0;
-  const done = latest && latest.emitted >= latest.count;
+  const params = presets[type]?.[intensity];
 
   return (
-    <div className="flex flex-col gap-4">
-      <div>
-        <div className="panel-title">Red team</div>
-        <h1 className="text-2xl font-semibold text-white">
-          Attack Lab <span className="text-accent">· inject simulated fraud</span>
-        </h1>
-        <p className="mt-1 text-sm text-slate-400">
-          Attacks are synthetic transaction patterns injected into the live stream — no real systems are touched. Watch whether the detector catches them.
-        </p>
-      </div>
+    <>
+      <PageHeader
+        eyebrow="Red team"
+        serif="Attack"
+        sans="laboratory"
+        description="Inject a burst of synthetic fraud into the live stream and see how much of it the detector catches. Nothing outside this simulator is touched."
+      />
 
-      <div className="grid gap-4 xl:grid-cols-[1.3fr_1fr]">
-        <div className="panel p-5">
-          <div className="panel-title mb-3">1 · Choose an attack pattern</div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {ATTACK_TYPES.map((t) => (
-              <button
-                key={t}
-                onClick={() => setType(t)}
-                className={`rounded-xl border p-3 text-left ${type === t ? 'border-accent bg-accent/10' : 'border-white/10 bg-black/20 hover:border-white/25'}`}
-                style={{ boxShadow: type === t ? 'var(--glow)' : undefined }}
-              >
-                <div className={`font-semibold ${type === t ? 'text-accent' : 'text-slate-100'}`}>{ATTACK_LABELS[t]}</div>
-                <div className="mt-1 text-xs leading-snug text-slate-400">{ATTACK_DESCRIPTIONS[t]}</div>
+      <Section title="Pattern">
+        <div className="grid border-t border-line md:grid-cols-2 md:gap-x-12">
+          {ATTACK_TYPES.map((t, i) => {
+            const active = type === t;
+            return (
+              <button key={t} onClick={() => setType(t)} aria-pressed={active} className={`flex gap-5 border-b border-line py-5 text-left ${active ? '' : 'hover:bg-surface'}`}>
+                <span className={`font-mono text-[13px] ${active ? 'text-accent' : 'text-muted'}`}>{String(i + 1).padStart(2, '0')}</span>
+                <span>
+                  <span className={`block text-[16px] ${active ? 'display text-[22px] leading-none' : 'text-ink'}`}>{ATTACK_LABELS[t]}</span>
+                  <span className="mt-1.5 block text-[13px] text-muted">{ATTACK_DESCRIPTIONS[t]}</span>
+                </span>
               </button>
-            ))}
-          </div>
+            );
+          })}
+        </div>
+      </Section>
 
-          <div className="panel-title mb-2 mt-5">2 · Intensity</div>
-          <div className="grid grid-cols-3 gap-2">
+      <Section title="Intensity">
+        <div className="flex flex-wrap items-center gap-8">
+          <div className="flex border border-line-strong">
             {(['low', 'medium', 'high'] as Intensity[]).map((i) => (
               <button
                 key={i}
                 onClick={() => setIntensity(i)}
-                className={`rounded-lg border py-2 text-sm font-semibold uppercase tracking-wider ${
-                  intensity === i ? 'border-accent2 bg-accent2/15 text-accent2' : 'border-white/10 text-slate-400 hover:border-white/25'
-                }`}
+                aria-pressed={intensity === i}
+                className={`h-10 px-5 text-[13px] capitalize ${intensity === i ? 'bg-accent font-medium text-accent-ink' : 'text-muted hover:text-ink'}`}
               >
                 {i}
               </button>
             ))}
           </div>
-          <p className="mt-2 text-xs text-slate-400">{INTENSITY_NOTE[intensity]}</p>
-          {presets[type] && (
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {Object.entries(presets[type][intensity]).map(([k, v]) => (
-                <span key={k} className="rounded bg-white/5 px-2 py-0.5 font-mono text-[11px] text-slate-400">
-                  {k}={String(v)}
-                </span>
-              ))}
-            </div>
-          )}
-
-          <button
-            onClick={launch}
-            disabled={busy}
-            className="mt-5 w-full rounded-xl py-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-950 hover:brightness-110 disabled:opacity-50"
-            style={{ background: 'linear-gradient(90deg, var(--accent), var(--accent-2))', boxShadow: 'var(--glow)' }}
-          >
-            {busy ? 'Launching…' : '⚡ Launch simulated attack'}
+          <p className="max-w-[44ch] text-[14px] text-muted">{INTENSITY_NOTE[intensity]}</p>
+        </div>
+        {params && (
+          <p className="mt-5 font-mono text-[12px] text-muted">
+            {Object.entries(params)
+              .map(([k, v]) => {
+                if (typeof v === 'boolean') return v ? PARAM_LABEL[k] : null;
+                if (k === 'paceMs') return `${(v / 1000).toFixed(1)} s apart`;
+                if (k === 'maxAmount') return `up to ₹${v}`;
+                if (k === 'amount') return `₹${v.toLocaleString('en-IN')} each`;
+                return `${v} ${PARAM_LABEL[k] || k}`;
+              })
+              .filter(Boolean)
+              .join('   ·   ')}
+          </p>
+        )}
+        <div className="mt-8 flex items-center gap-5">
+          <button onClick={launch} disabled={busy} className="btn btn-primary">
+            {busy ? 'Launching' : 'Launch simulated attack'}
           </button>
-          {error && <div className="mt-2 text-sm text-rose-300">{error}</div>}
+          {error && <span className="text-[13px] text-signal">{error}</span>}
         </div>
+      </Section>
 
-        <div className="flex flex-col gap-4">
-          <div className="panel p-5">
-            <div className="panel-title mb-3 flex items-center gap-2">
-              Live counter
-              {latest && !done && <span className="h-2 w-2 rounded-full bg-accent pulse-dot" />}
-            </div>
-            {latest ? (
-              <>
-                <div className="mb-3 text-sm text-slate-300">
-                  <span className="font-semibold text-white">{ATTACK_LABELS[latest.attackType]}</span> · {latest.intensity} ·{' '}
-                  <span className="text-slate-500">{done ? 'complete' : 'in progress'}</span>
-                </div>
-                <div className="flex gap-3">
-                  <Counter label={`launched / ${latest.count}`} value={latest.emitted} tone="text-white" />
-                  <Counter label="detected" value={latest.detectedCount} tone="text-emerald-300" />
-                  <Counter label="slipped" value={slipped} tone="text-fuchsia-300" />
-                </div>
-                <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/5">
-                  <div className="h-full bg-slate-400/60 transition-all" style={{ width: `${(latest.emitted / Math.max(1, latest.count)) * 100}%` }} />
-                </div>
-                <p className="mt-3 text-sm text-slate-400">
-                  {done
-                    ? latest.detectedCount === 0
-                      ? mode === 'attacker'
-                        ? 'Clean run — nothing was flagged. An undetected path.'
-                        : 'The detector missed this entire attack. Try the Loop to tighten the rules.'
-                      : `The detector flagged ${latest.detectedCount} of ${latest.count} transactions.`
-                    : 'Transactions are being injected into the live stream…'}
-                </p>
-              </>
-            ) : (
-              <p className="text-sm text-slate-500">Launch an attack to see launched vs detected counts update in real time.</p>
+      <Section title="Latest run" aside={latest && `${ATTACK_LABELS[latest.attackType]}, ${latest.intensity}, ${done ? 'complete' : 'in progress'}`}>
+        {latest ? (
+          <>
+            <Figures
+              items={[
+                { label: 'Launched', value: `${latest.emitted}/${latest.count}` },
+                { label: 'Detected', value: latest.detectedCount, tone: 'accent' },
+                { label: 'Slipped through', value: latest.emitted - latest.detectedCount, tone: 'signal' },
+              ]}
+            />
+            {done && (
+              <p className="mt-8 text-[15px] text-muted">
+                {latest.detectedCount === 0
+                  ? 'The detector missed the entire attack. The Loop shows how the rules can adapt.'
+                  : `The detector flagged ${latest.detectedCount} of ${latest.count} transactions.`}
+              </p>
             )}
-          </div>
+          </>
+        ) : (
+          <p className="text-[14px] text-muted">Launch an attack to watch launched, detected and slipped counts update in real time.</p>
+        )}
+      </Section>
 
-          <div className="panel overflow-hidden">
-            <div className="panel-title px-5 pt-4">Recent runs</div>
-            <div className="max-h-72 overflow-auto">
-              <table className="mt-2 w-full text-sm">
-                <tbody>
-                  {runs.map((r) => (
-                    <tr key={r._id} className="border-t border-white/[0.04]">
-                      <td className="px-4 py-2 font-mono text-xs text-slate-500">{fmtTime(r.startedAt)}</td>
-                      <td className="px-4 py-2 text-slate-200">{ATTACK_LABELS[r.attackType]}</td>
-                      <td className="px-4 py-2 text-xs uppercase text-slate-400">{r.intensity}</td>
-                      <td className="px-4 py-2 text-right font-mono text-xs">
-                        <span className="text-emerald-300">{r.detectedCount}</span>
-                        <span className="text-slate-600"> / {r.count}</span>
-                      </td>
-                    </tr>
-                  ))}
-                  {runs.length === 0 && (
-                    <tr>
-                      <td className="px-4 py-4 text-slate-500">No attacks launched yet.</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Section title="Recent runs">
+        {!loaded ? (
+          <SkeletonRows rows={4} cols={4} />
+        ) : runs.length ? (
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Started</th>
+                <th>Pattern</th>
+                <th>Intensity</th>
+                <th className="!text-right">Detected</th>
+              </tr>
+            </thead>
+            <tbody>
+              {runs.map((r) => (
+                <tr key={r._id}>
+                  <td className="font-mono text-[12px] text-muted">{fmtTime(r.startedAt)}</td>
+                  <td>{ATTACK_LABELS[r.attackType]}</td>
+                  <td className="capitalize text-muted">{r.intensity}</td>
+                  <td className="text-right font-mono">
+                    {r.detectedCount}
+                    <span className="text-muted"> of {r.count}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p className="text-[14px] text-muted">No attacks launched yet.</p>
+        )}
+      </Section>
+    </>
   );
 }

@@ -10,6 +10,7 @@ import Alerts from './pages/Alerts';
 import CaseDetail from './pages/CaseDetail';
 import AttackLab from './pages/AttackLab';
 import Loop from './pages/Loop';
+import { Privacy, Terms } from './pages/Legal';
 
 function Protected({ children }: { children: ReactNode }) {
   const { token, user } = useAppSelector((s) => s.auth);
@@ -23,6 +24,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
       <Route
         element={
           <Protected>
