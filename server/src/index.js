@@ -11,6 +11,7 @@ import authRoutes from './routes/auth.js';
 import transactionRoutes from './routes/transactions.js';
 import statsRoutes from './routes/stats.js';
 import alertRoutes from './routes/alerts.js';
+import attackRoutes from './routes/attacks.js';
 
 const PORT = process.env.PORT || 4000;
 if (!process.env.JWT_SECRET) console.log('[auth] JWT_SECRET not set - using the built-in development secret');
@@ -24,6 +25,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/alerts', alertRoutes);
+app.use('/api/attacks', attackRoutes);
 
 app.use((err, req, res, next) => {
   console.error('[api]', err);

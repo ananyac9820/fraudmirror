@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import LiveFeed from './pages/LiveFeed';
 import Alerts from './pages/Alerts';
 import CaseDetail from './pages/CaseDetail';
+import AttackLab from './pages/AttackLab';
 
 function Protected({ children }: { children: ReactNode }) {
   const { token, user } = useAppSelector((s) => s.auth);
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/feed" element={<LiveFeed />} />
         <Route path="/alerts" element={<Alerts />} />
         <Route path="/alerts/:id" element={<CaseDetail />} />
+        <Route path="/attack-lab" element={<AttackLab />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
