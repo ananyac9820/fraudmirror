@@ -9,6 +9,7 @@ import { canSeeTruth, verifyToken } from './middleware/auth.js';
 import { engine } from './engine/engine.js';
 import authRoutes from './routes/auth.js';
 import transactionRoutes from './routes/transactions.js';
+import statsRoutes from './routes/stats.js';
 
 const PORT = process.env.PORT || 4000;
 if (!process.env.JWT_SECRET) console.log('[auth] JWT_SECRET not set - using the built-in development secret');
@@ -20,6 +21,7 @@ app.use(express.json());
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date() }));
 app.use('/api/auth', authRoutes);
 app.use('/api/transactions', transactionRoutes);
+app.use('/api/stats', statsRoutes);
 
 app.use((err, req, res, next) => {
   console.error('[api]', err);
