@@ -14,7 +14,7 @@ function ModeToggle() {
     <button
       onClick={() => dispatch(toggleMode())}
       title="Flip the mirror: view the same data as defender or attacker"
-      className="relative flex h-9 w-[190px] sm:w-[220px] items-center rounded-full border border-white/10 bg-black/40 p-1 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em]"
+      className="relative flex h-9 w-[150px] shrink-0 items-center rounded-full border border-white/10 bg-black/40 p-1 text-[10px] font-semibold tracking-wide sm:w-[220px] sm:text-[11px] sm:tracking-[0.14em]"
     >
       <span
         className="absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full transition-all duration-500"
@@ -49,11 +49,11 @@ export default function Layout() {
   const items = NAV.filter((n) => user && n.roles.includes(user.role));
 
   return (
-    <div className="min-h-screen grid-bg">
+    <div className="min-h-screen overflow-x-hidden grid-bg">
       {sweepKey > 0 && <div key={sweepKey} className="mirror-sweep" />}
 
       {/* Top bar */}
-      <header className="sticky top-0 z-40 flex h-16 items-center gap-3 border-b border-white/5 bg-[#05080d]/85 px-3 sm:px-5 backdrop-blur">
+      <header className="sticky top-0 z-40 flex h-16 items-center gap-2 sm:gap-3 border-b border-white/5 bg-[#05080d]/85 px-3 sm:px-5 backdrop-blur">
         <button className="rounded-lg p-2 text-slate-300 hover:bg-white/5 lg:hidden" onClick={() => setMenuOpen((o) => !o)} aria-label="Menu">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2}>
             <path d="M4 6h16M4 12h16M4 18h16" />
@@ -78,7 +78,7 @@ export default function Layout() {
           {connected ? 'LIVE' : 'offline'}
         </span>
 
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-2 sm:gap-3">
           <ModeToggle />
           <div className="hidden text-right leading-tight sm:block">
             <div className="text-sm font-medium text-white">{user?.name}</div>
@@ -89,7 +89,7 @@ export default function Layout() {
               dispatch(logout());
               navigate('/login');
             }}
-            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs text-slate-300 hover:border-rose-400/50 hover:text-rose-300"
+            className="shrink-0 rounded-lg border border-white/10 px-2 py-1.5 text-xs text-slate-300 hover:border-rose-400/50 hover:text-rose-300 sm:px-3"
           >
             Logout
           </button>

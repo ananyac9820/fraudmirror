@@ -60,14 +60,14 @@ export default function CaseDetail() {
         <RiskBadge score={alert.riskScore} className="!text-lg !px-3" />
         <div>
           <div className="panel-title">Case file · {tx.txId}</div>
-          <h1 className="text-2xl font-semibold text-white">
+          <h1 className="text-xl font-semibold text-white sm:text-2xl">
             Suspected <span className="text-accent">{ATTACK_LABELS[alert.suspectedPattern] || alert.suspectedPattern}</span>
           </h1>
         </div>
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-        <div className="flex flex-col gap-4">
+        <div className="flex min-w-0 flex-col gap-4">
           <div className="panel grid grid-cols-2 gap-4 p-5 sm:grid-cols-3">
             <Field label="Amount" value={<span className="text-xl text-accent">{fmtINR(tx.amount)}</span>} mono />
             <Field label="Time" value={fmtDateTime(tx.timestamp)} />
