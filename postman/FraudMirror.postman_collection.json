@@ -1,0 +1,208 @@
+{
+  "info": {
+    "name": "FraudMirror API",
+    "description": "REST API for FraudMirror (synthetic data). Run 'Login (admin)' first: its test script saves the JWT into the {{token}} collection variable, which every other request uses. Start the server with `npm run dev` from the project root.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:4000/api" },
+    { "key": "token", "value": "" },
+    { "key": "alertId", "value": "" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login (admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status 200', () => pm.response.to.have.status(200));",
+                  "const body = pm.response.json();",
+                  "pm.collectionVariables.set('token', body.token);",
+                  "pm.test('returns a JWT', () => pm.expect(body.token).to.be.a('string'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@fraudmirror.dev\",\n  \"password\": \"demo123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "Login (analyst)",
+          "event": [
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": ["pm.collectionVariables.set('token', pm.response.json().token);"] }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"analyst@fraudmirror.dev\",\n  \"password\": \"demo123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "Current user",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/auth/me", "host": ["{{baseUrl}}"], "path": ["auth", "me"] } }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Get recent transactions",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/transactions?limit=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions"],
+              "query": [{ "key": "limit", "value": "50" }]
+            }
+          }
+        },
+        {
+          "name": "Get flagged transactions",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/transactions?flagged=true&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions"],
+              "query": [
+                { "key": "flagged", "value": "true" },
+                { "key": "limit", "value": "20" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get slipped fraud (red team / admin)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/transactions?slipped=true&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions"],
+              "query": [
+                { "key": "slipped", "value": "true" },
+                { "key": "limit", "value": "20" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Alerts",
+      "item": [
+        {
+          "name": "Get open alerts",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const alerts = pm.response.json().alerts;",
+                  "if (alerts && alerts.length) pm.collectionVariables.set('alertId', alerts[0]._id);",
+                  "pm.test('sorted by risk', () => { for (let i = 1; i < alerts.length; i++) pm.expect(alerts[i-1].riskScore).to.be.at.least(alerts[i].riskScore); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/alerts?status=open&pattern=all",
+              "host": ["{{baseUrl}}"],
+              "path": ["alerts"],
+              "query": [
+                { "key": "status", "value": "open" },
+                { "key": "pattern", "value": "all" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get alert case file",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/alerts/{{alertId}}", "host": ["{{baseUrl}}"], "path": ["alerts", "{{alertId}}"] } }
+        },
+        {
+          "name": "Review alert",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"decision\": \"confirmed_fraud\",\n  \"note\": \"Reviewed from Postman\"\n}" },
+            "url": { "raw": "{{baseUrl}}/alerts/{{alertId}}/review", "host": ["{{baseUrl}}"], "path": ["alerts", "{{alertId}}", "review"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attacks",
+      "item": [
+        {
+          "name": "Launch attack",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"attackType\": \"card_testing\",\n  \"intensity\": \"high\"\n}" },
+            "url": { "raw": "{{baseUrl}}/attacks/launch", "host": ["{{baseUrl}}"], "path": ["attacks", "launch"] }
+          }
+        },
+        {
+          "name": "List attack runs",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/attacks", "host": ["{{baseUrl}}"], "path": ["attacks"] } }
+        }
+      ]
+    },
+    {
+      "name": "Loop",
+      "item": [
+        {
+          "name": "Run loop round",
+          "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/loop/round", "host": ["{{baseUrl}}"], "path": ["loop", "round"] } }
+        },
+        {
+          "name": "Get loop rounds",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/loop/rounds", "host": ["{{baseUrl}}"], "path": ["loop", "rounds"] } }
+        },
+        {
+          "name": "Reset loop",
+          "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/loop/reset", "host": ["{{baseUrl}}"], "path": ["loop", "reset"] } }
+        }
+      ]
+    },
+    {
+      "name": "Stats",
+      "item": [
+        {
+          "name": "Get stats",
+          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/stats", "host": ["{{baseUrl}}"], "path": ["stats"] } }
+        },
+        {
+          "name": "Health check",
+          "request": { "auth": { "type": "noauth" }, "method": "GET", "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] } }
+        }
+      ]
+    }
+  ]
+}
