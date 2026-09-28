@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import { canAccess } from './components/nav';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import LiveFeed from './pages/LiveFeed';
 
 function Protected({ children }: { children: ReactNode }) {
   const { token, user } = useAppSelector((s) => s.auth);
@@ -26,6 +27,7 @@ export default function App() {
         }
       >
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/feed" element={<LiveFeed />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>
