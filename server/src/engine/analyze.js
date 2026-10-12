@@ -1,4 +1,4 @@
-import { Detector, defaultDetectorConfig } from './detector.js';
+import { Detector, fileAnalysisConfig } from './detector.js';
 
 /**
  * Custom input -> output: score a user-supplied CSV of transactions.
@@ -6,12 +6,13 @@ import { Detector, defaultDetectorConfig } from './detector.js';
  */
 
 export const MAX_ROWS = 5000;
+export const USD_TO_INR = 83; // fixed rate used when a file has amounts in US dollars
 
 // Accepted header spellings (compared lower-case, without spaces, dashes or underscores)
 const COLUMNS = {
-  timestamp: ['timestamp', 'time', 'datetime', 'date'],
-  accountId: ['accountid', 'account'],
-  amount: ['amount', 'amountinr', 'value'],
+  timestamp: ['timestamp', 'time', 'datetime', 'date', 'transdatetranstime'],
+  accountId: ['accountid', 'account', 'ccnum'],
+  amount: ['amount', 'amountinr', 'value', 'amt'],
   merchant: ['merchant', 'merchantname'],
   merchantCategory: ['merchantcategory', 'category'],
   channel: ['channel', 'method'],
@@ -64,6 +65,17 @@ export function parseCsv(text) {
 }
 
 const norm = (h) => h.toLowerCase().replace(/[\s_-]/g, '');
+/**
+ * Timestamps without a time zone are read as wall-clock time and kept that way (stored as UTC),
+ * so "23:15" in the file is 23:15 for the detector on any server and in any browser.
+ */
+export function parseTimestamp(raw) {
+  const v = String(raw).trim();
+  const hasZone = /([zZ]|[+-]\d\d:?\d\d)$/.test(v);
+  const naive = /^\d{4}-\d\d-\d\d[ T]\d\d:\d\d(:\d\d(\.\d+)?)?$/.test(v);
+  return new Date(!hasZone && naive ? `${v.replace(' ', 'T')}Z` : v);
+}
+
 const truthy = (v) => ['1', 'true', 'yes', 'y', 'fraud'].includes(String(v).trim().toLowerCase());
 
 /**
@@ -81,6 +93,10 @@ export function analyzeCsv(csvText) {
   if (missing.length) throw fail(`Missing required column${missing.length > 1 ? 's' : ''}: ${missing.join(', ')}. Found: ${table[0].join(', ')}`);
   if (table.length - 1 > MAX_ROWS) throw fail(`The file has ${table.length - 1} rows. The limit is ${MAX_ROWS}.`);
 
+  // The public Sparkov credit-card dataset (Kaggle: kartik2112/fraud-detection) is accepted as-is:
+  // card number -> masked account id, US dollars -> rupees, "fraud_" prefix dropped from merchant names.
+  const sparkov = header.includes('ccnum') && header.includes('amt') && header.includes('transdatetranstime');
+
   const warnings = [];
   const warn = (m) => warnings.length < 10 && warnings.push(m);
   const get = (r, key) => (col[key] >= 0 ? (r[col[key]] ?? '').trim() : '');
@@ -90,9 +106,13 @@ export function analyzeCsv(csvText) {
   for (let i = 1; i < table.length; i++) {
     const r = table[i];
     const line = i + 1;
-    const ts = new Date(get(r, 'timestamp'));
-    const amount = Number(get(r, 'amount').replace(/[₹,\s]/g, ''));
-    const accountId = get(r, 'accountId');
+    const ts = parseTimestamp(get(r, 'timestamp'));
+    let amount = Number(get(r, 'amount').replace(/[₹$,\s]/g, ''));
+    let accountId = get(r, 'accountId');
+    if (sparkov) {
+      amount = Math.round(amount * USD_TO_INR);
+      if (accountId) accountId = `CARD-${accountId.slice(-8)}`; // never keep a full card number
+    }
     if (Number.isNaN(ts.getTime())) {
       warn(`Row ${line} skipped: cannot read timestamp "${get(r, 'timestamp')}"`);
       continue;
@@ -113,7 +133,7 @@ export function analyzeCsv(csvText) {
       timestamp: ts.toISOString(),
       accountId,
       amount,
-      merchant: get(r, 'merchant') || 'Unknown merchant',
+      merchant: (sparkov ? get(r, 'merchant').replace(/^fraud_/, '') : get(r, 'merchant')) || 'Unknown merchant',
       merchantCategory: get(r, 'merchantCategory') || '',
       channel: ['card', 'upi', 'netbanking'].includes(channel) ? channel : 'card',
       deviceId: get(r, 'deviceId') || 'unknown-device',
@@ -128,7 +148,7 @@ export function analyzeCsv(csvText) {
 
   // The detector's rules depend on order, so score in time order
   txs.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp) || a.row - b.row);
-  const detector = new Detector(defaultDetectorConfig(), { coldStart: true });
+  const detector = new Detector(fileAnalysisConfig(), { coldStart: true });
   const results = txs.map((tx) => ({ ...tx, ...detector.score(tx) }));
 
   const flagged = results.filter((r) => r.flagged);
@@ -141,6 +161,8 @@ export function analyzeCsv(csvText) {
     results,
     warnings,
     summary: {
+      format: sparkov ? 'sparkov' : 'fraudmirror',
+      amountsConvertedFromUsd: sparkov ? USD_TO_INR : null,
       rows: results.length,
       skipped: table.length - 1 - results.length,
       accounts: new Set(results.map((r) => r.accountId)).size,

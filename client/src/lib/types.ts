@@ -76,6 +76,8 @@ export interface AnalysisRow {
 }
 
 export interface AnalysisSummary {
+  format: 'sparkov' | 'fraudmirror';
+  amountsConvertedFromUsd: number | null;
   rows: number;
   skipped: number;
   accounts: number;

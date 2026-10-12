@@ -22,7 +22,8 @@ export async function connectDB() {
       // It is a dev dependency, so hosted installs (npm install --omit=dev) do not have it
       throw new Error('MONGO_URI is not set and mongodb-memory-server is not installed. Set MONGO_URI to a MongoDB connection string.');
     }
-    memoryServer = await MongoMemoryServer.create();
+    // A cold or busy machine can need well over the 10 s default to launch mongod
+    memoryServer = await MongoMemoryServer.create({ instance: { launchTimeout: 60000 } });
     uri = memoryServer.getUri();
   }
   await mongoose.connect(uri);

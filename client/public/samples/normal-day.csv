@@ -1,301 +1,301 @@
 timestamp,accountId,amount,merchant,merchantCategory,channel,deviceId,city,txType,counterpartyId,accountAgeDays
-2026-10-10T03:30:09.798Z,ACC942436,205,Local Kirana Store,Grocery,upi,DEV-1BFDE1,Ahmedabad,payment,,2399
-2026-10-10T03:30:24.446Z,ACC865804,289,Ola,Transport,upi,DEV-DA17BA,Bengaluru,payment,,651
-2026-10-10T03:30:29.688Z,ACC667214,559,IRCTC,Travel,netbanking,DEV-141748,Delhi,payment,,276
-2026-10-10T03:30:46.664Z,ACC475838,472,Zomato,Food delivery,upi,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T03:31:01.921Z,ACC880183,217,Local Kirana Store,Grocery,upi,DEV-A0B620,Bengaluru,payment,,83
-2026-10-10T03:31:11.547Z,ACC650134,213,Swiggy,Food delivery,upi,DEV-E84029,Pune,payment,,1902
-2026-10-10T03:31:25.509Z,ACC661246,741,Swiggy,Food delivery,netbanking,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T03:31:29.737Z,ACC968222,560,BigBasket,Grocery,netbanking,DEV-94F93B,Ahmedabad,payment,,385
-2026-10-10T03:31:35.363Z,ACC918860,331,Local Kirana Store,Grocery,netbanking,DEV-64B31B,Kolkata,payment,,997
-2026-10-10T03:31:44.902Z,ACC606827,808,Zomato,Food delivery,upi,DEV-38D26A,Mumbai,payment,,170
-2026-10-10T03:31:55.560Z,ACC701713,810,Airtel Payments,Telecom,netbanking,DEV-E7BDF2,Kochi,payment,,1632
-2026-10-10T03:32:07.059Z,ACC523390,152,Zomato,Food delivery,card,DEV-084721,Delhi,payment,,314
-2026-10-10T03:32:21.709Z,ACC371575,199,Jio Recharge,Telecom,upi,DEV-45E768,Chennai,payment,,1983
-2026-10-10T03:32:32.352Z,ACC114750,521,BigBasket,Grocery,upi,DEV-BF4DC8,Lucknow,payment,,2366
-2026-10-10T03:32:48.766Z,ACC982642,12373,Flipkart,E-commerce,card,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T03:33:06.593Z,ACC678575,791,Flipkart,E-commerce,card,DEV-F4452D,Delhi,payment,,379
-2026-10-10T03:33:12.506Z,ACC307560,159,Local Kirana Store,Grocery,upi,DEV-434634,Kolkata,payment,,1345
-2026-10-10T03:33:21.184Z,ACC307560,508,Zomato,Food delivery,upi,DEV-434634,Kolkata,payment,,1345
-2026-10-10T03:33:27.905Z,ACC745450,3169,Indian Oil,Fuel,card,DEV-A50351,Jaipur,payment,,349
-2026-10-10T03:33:40.132Z,ACC865804,326,Local Kirana Store,Grocery,upi,DEV-DA17BA,Bengaluru,payment,,651
-2026-10-10T03:33:49.954Z,ACC481113,132,Local Kirana Store,Grocery,upi,DEV-F43B1C,Delhi,payment,,588
-2026-10-10T03:34:03.509Z,ACC667214,987,Local Kirana Store,Grocery,upi,DEV-141748,Delhi,payment,,276
-2026-10-10T03:34:18.217Z,ACC523390,155,Chai Point,Food & beverage,upi,DEV-084721,Delhi,payment,,314
-2026-10-10T03:34:32.547Z,ACC307560,662,Airtel Payments,Telecom,netbanking,DEV-434634,Kolkata,payment,,1345
-2026-10-10T03:34:43.184Z,ACC865346,488,Apollo Pharmacy,Health,card,DEV-712D09,Mumbai,payment,,2748
-2026-10-10T03:34:48.097Z,ACC371575,258,Blinkit,Grocery,upi,DEV-45E768,Chennai,payment,,1983
-2026-10-10T03:34:54.212Z,ACC846860,444,Ola,Transport,upi,DEV-FD979E,Bengaluru,payment,,1135
-2026-10-10T03:35:11.248Z,ACC203258,561,Ola,Transport,netbanking,DEV-F1EF7A,Delhi,payment,,671
-2026-10-10T03:35:28.861Z,ACC865804,850,Local Kirana Store,Grocery,upi,DEV-71115B,Bengaluru,payment,,651
-2026-10-10T03:35:40.871Z,ACC606827,279,Zomato,Food delivery,upi,DEV-38D26A,Mumbai,payment,,170
-2026-10-10T03:35:51.096Z,ACC572356,152,Chai Point,Food & beverage,upi,DEV-CEA1F8,Delhi,payment,,438
-2026-10-10T03:36:00.553Z,ACC114750,638,Indian Oil,Fuel,card,DEV-F7BAC5,Lucknow,payment,,2366
-2026-10-10T03:36:09.734Z,ACC371575,754,BookMyShow,Entertainment,upi,DEV-45E768,Chennai,payment,,1983
-2026-10-10T03:36:18.810Z,ACC456948,174,Local Kirana Store,Grocery,netbanking,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T03:36:25.757Z,ACC865346,478,Zomato,Food delivery,netbanking,DEV-712D09,Mumbai,payment,,2748
-2026-10-10T03:36:43.284Z,ACC417044,419,Blinkit,Grocery,upi,DEV-F98813,Ahmedabad,payment,,285
-2026-10-10T03:36:56.592Z,ACC982642,252,Chai Point,Food & beverage,upi,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T03:37:05.568Z,ACC253757,290,Flipkart,E-commerce,card,DEV-2009F4,Delhi,payment,,2775
-2026-10-10T03:37:21.920Z,ACC572356,240,Zomato,Food delivery,upi,DEV-F8F956,Delhi,payment,,438
-2026-10-10T03:37:33.041Z,ACC599751,154,Zomato,Food delivery,upi,DEV-8E89AB,Hyderabad,payment,,684
-2026-10-10T03:37:46.303Z,ACC968222,121,Blinkit,Grocery,card,DEV-79CACA,Ahmedabad,payment,,385
-2026-10-10T03:37:54.978Z,ACC307560,1533,DMart,Grocery,card,DEV-434634,Kolkata,payment,,1345
-2026-10-10T03:38:05.767Z,ACC307560,1247,Zomato,Food delivery,card,DEV-434634,Kolkata,payment,,1345
-2026-10-10T03:38:21.677Z,ACC965334,214,Ola,Transport,upi,DEV-6D94C7,Mumbai,payment,,1094
-2026-10-10T03:38:31.116Z,ACC661246,731,Blinkit,Grocery,upi,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T03:38:38.411Z,ACC572356,242,Zomato,Food delivery,upi,DEV-F8F956,Delhi,payment,,438
-2026-10-10T03:38:52.276Z,ACC667214,293,Swiggy,Food delivery,upi,DEV-141748,Delhi,payment,,276
-2026-10-10T03:39:08.952Z,ACC667840,200,Flipkart,E-commerce,card,DEV-AA9A09,Chennai,payment,,672
-2026-10-10T03:39:17.201Z,ACC417044,925,Myntra,Fashion,card,DEV-B13C4F,Ahmedabad,payment,,285
-2026-10-10T03:39:23.641Z,ACC968222,396,Swiggy,Food delivery,upi,DEV-79CACA,Ahmedabad,payment,,385
-2026-10-10T03:39:34.316Z,ACC992136,2792,BigBasket,Grocery,upi,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T03:39:52.020Z,ACC942436,262,Uber,Transport,upi,DEV-1BFDE1,Ahmedabad,payment,,2399
-2026-10-10T03:40:08.493Z,ACC982642,1199,Swiggy,Food delivery,upi,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T03:40:15.527Z,ACC340751,275,Swiggy,Food delivery,card,DEV-2C45DA,Mumbai,payment,,1721
-2026-10-10T03:40:22.114Z,ACC661246,1687,BigBasket,Grocery,upi,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T03:40:26.529Z,ACC523390,239,Local Kirana Store,Grocery,upi,DEV-084721,Delhi,payment,,314
-2026-10-10T03:40:31.033Z,ACC340751,284,Blinkit,Grocery,upi,DEV-2C45DA,Mumbai,payment,,1721
-2026-10-10T03:40:42.971Z,ACC307560,253,Chai Point,Food & beverage,upi,DEV-434634,Kolkata,payment,,1345
-2026-10-10T03:40:59.976Z,ACC667840,50,Chai Point,Food & beverage,upi,DEV-AA9A09,Chennai,payment,,672
-2026-10-10T03:41:11.436Z,ACC942436,9049,Croma,Electronics,card,DEV-1BFDE1,Ahmedabad,payment,,2399
-2026-10-10T03:41:19.345Z,ACC917695,1906,HP Petrol,Fuel,netbanking,DEV-02984B,Mumbai,payment,,1182
-2026-10-10T03:41:37.264Z,ACC865804,187,Uber,Transport,upi,DEV-DA17BA,Bengaluru,payment,,651
-2026-10-10T03:41:43.027Z,ACC661246,11905,Flipkart,E-commerce,upi,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T03:41:52.755Z,ACC661246,700,Zomato,Food delivery,upi,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T03:41:57.251Z,ACC745450,436,Swiggy,Food delivery,upi,DEV-A50351,Jaipur,payment,,349
-2026-10-10T03:42:04.382Z,ACC606827,5672,Flipkart,E-commerce,card,DEV-38D26A,Mumbai,payment,,170
-2026-10-10T03:42:15.815Z,ACC481113,831,IRCTC,Travel,netbanking,DEV-F43B1C,Delhi,payment,,588
-2026-10-10T03:42:29.278Z,ACC531232,3970,Tata CLiQ,E-commerce,card,DEV-545F9A,Chandigarh,payment,,169
-2026-10-10T03:42:40.221Z,ACC307560,1707,Apollo Pharmacy,Health,upi,DEV-434634,Kolkata,payment,,1345
-2026-10-10T03:42:51.847Z,ACC238581,1359,IRCTC,Travel,netbanking,DEV-F2DD23,Mumbai,payment,,2365
-2026-10-10T03:43:00.438Z,ACC475838,1310,Amazon India,E-commerce,card,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T03:43:17.497Z,ACC238581,288,Zomato,Food delivery,card,DEV-F2DD23,Mumbai,payment,,2365
-2026-10-10T03:43:30.786Z,ACC475838,2695,MakeMyTrip,Travel,card,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T03:43:35.877Z,ACC667840,150,Zomato,Food delivery,upi,DEV-AA9A09,Chennai,payment,,672
-2026-10-10T03:43:42.477Z,ACC661246,396,Blinkit,Grocery,upi,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T03:43:54.327Z,ACC865804,1042,HP Petrol,Fuel,upi,DEV-DA17BA,Bengaluru,payment,,651
-2026-10-10T03:44:10.595Z,ACC650134,1369,HP Petrol,Fuel,upi,DEV-E84029,Pune,payment,,1902
-2026-10-10T03:44:17.111Z,ACC701713,606,DMart,Grocery,card,DEV-2E6263,Kochi,payment,,1632
-2026-10-10T03:44:34.466Z,ACC417044,169,Local Kirana Store,Grocery,netbanking,DEV-F98813,Ahmedabad,payment,,285
-2026-10-10T03:44:50.786Z,ACC701713,410,Zomato,Food delivery,card,DEV-E7BDF2,Kochi,payment,,1632
-2026-10-10T03:44:57.036Z,ACC114750,618,Jio Recharge,Telecom,upi,DEV-F7BAC5,Lucknow,payment,,2366
-2026-10-10T03:45:11.286Z,ACC371575,264,Zomato,Food delivery,upi,DEV-45E768,Chennai,payment,,1983
-2026-10-10T03:45:19.797Z,ACC456948,401,IRCTC,Travel,netbanking,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T03:45:23.852Z,ACC880183,1306,Indian Oil,Fuel,upi,DEV-A0B620,Bengaluru,payment,,83
-2026-10-10T03:45:36.134Z,ACC982642,3225,Myntra,Fashion,upi,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T03:45:40.439Z,ACC965334,204,BookMyShow,Entertainment,upi,DEV-6D94C7,Mumbai,payment,,1094
-2026-10-10T03:45:56.122Z,ACC650134,561,Apollo Pharmacy,Health,upi,DEV-E84029,Pune,payment,,1902
-2026-10-10T03:46:00.927Z,ACC992136,377,Swiggy,Food delivery,card,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T03:46:13.480Z,ACC456948,673,DMart,Grocery,card,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T03:46:25.868Z,ACC667840,824,Myntra,Fashion,netbanking,DEV-AA9A09,Chennai,payment,,672
-2026-10-10T03:46:39.629Z,ACC989280,217,Ola,Transport,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T03:46:44.648Z,ACC745450,271,Local Kirana Store,Grocery,upi,DEV-A50351,Jaipur,payment,,349
-2026-10-10T03:46:57.467Z,ACC531232,896,IRCTC,Travel,netbanking,DEV-545F9A,Chandigarh,payment,,169
-2026-10-10T03:47:14.859Z,ACC701713,735,BigBasket,Grocery,card,DEV-2E6263,Kochi,payment,,1632
-2026-10-10T03:47:24.727Z,ACC599751,574,BigBasket,Grocery,upi,DEV-8E89AB,Hyderabad,payment,,684
-2026-10-10T03:47:37.338Z,ACC942436,167,Swiggy,Food delivery,upi,DEV-1BFDE1,Ahmedabad,payment,,2399
-2026-10-10T03:47:47.992Z,ACC531232,411,Zomato,Food delivery,upi,DEV-7E9F1F,Chandigarh,payment,,169
-2026-10-10T03:47:54.918Z,ACC650134,148,Ola,Transport,upi,DEV-E84029,Pune,payment,,1902
-2026-10-10T03:48:05.302Z,ACC992136,3615,Amazon India,E-commerce,card,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T03:48:16.448Z,ACC371575,80,Ola,Transport,card,DEV-45E768,Chennai,payment,,1983
-2026-10-10T03:48:30.955Z,ACC207991,459,Uber,Transport,upi,DEV-17C459,Mumbai,payment,,1013
-2026-10-10T03:48:36.705Z,ACC606827,7170,Tata CLiQ,E-commerce,card,DEV-38D26A,Mumbai,payment,,170
-2026-10-10T03:48:52.049Z,ACC918860,254,Zomato,Food delivery,upi,DEV-64B31B,Kolkata,payment,,997
-2026-10-10T03:49:03.720Z,ACC371575,443,BigBasket,Grocery,upi,DEV-45E768,Chennai,payment,,1983
-2026-10-10T03:49:18.249Z,ACC572356,139,Uber,Transport,upi,DEV-F8F956,Delhi,payment,,438
-2026-10-10T03:49:28.059Z,ACC701713,458,Local Kirana Store,Grocery,card,DEV-E7BDF2,Kochi,payment,,1632
-2026-10-10T03:49:41.623Z,ACC417044,3607,BigBasket,Grocery,upi,DEV-B13C4F,Ahmedabad,payment,,285
-2026-10-10T03:49:51.619Z,ACC982642,452,Indian Oil,Fuel,upi,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T03:50:05.468Z,ACC253757,535,Swiggy,Food delivery,upi,DEV-2009F4,Delhi,payment,,2775
-2026-10-10T03:50:17.270Z,ACC989280,854,Swiggy,Food delivery,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T03:50:34.021Z,ACC523390,240,Blinkit,Grocery,upi,DEV-084721,Delhi,payment,,314
-2026-10-10T03:50:47.033Z,ACC481113,222,Local Kirana Store,Grocery,upi,DEV-D74238,Delhi,payment,,588
-2026-10-10T03:50:56.073Z,ACC456948,54,Chai Point,Food & beverage,upi,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T03:51:07.871Z,ACC572356,701,BookMyShow,Entertainment,upi,DEV-F8F956,Delhi,payment,,438
-2026-10-10T03:51:23.454Z,ACC678575,390,Uber,Transport,upi,DEV-F4452D,Delhi,payment,,379
-2026-10-10T03:51:28.661Z,ACC992136,964,Blinkit,Grocery,upi,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T03:51:36.214Z,ACC989280,913,Zomato,Food delivery,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T03:51:53.958Z,ACC340751,1146,Indian Oil,Fuel,card,DEV-2C45DA,Mumbai,payment,,1721
-2026-10-10T03:52:02.452Z,ACC661246,201,Ola,Transport,upi,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T03:52:11.794Z,ACC203258,469,Amazon India,E-commerce,card,DEV-F1EF7A,Delhi,payment,,671
-2026-10-10T03:52:26.866Z,ACC989280,90,Chai Point,Food & beverage,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T03:52:33.489Z,ACC531232,167,Zomato,Food delivery,upi,DEV-545F9A,Chandigarh,payment,,169
-2026-10-10T03:52:50.132Z,ACC572356,348,Local Kirana Store,Grocery,card,DEV-F8F956,Delhi,payment,,438
-2026-10-10T03:52:56.918Z,ACC384451,413,Uber,Transport,upi,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T03:53:07.281Z,ACC667840,175,Zomato,Food delivery,card,DEV-AA9A09,Chennai,payment,,672
-2026-10-10T03:53:13.905Z,ACC207991,4234,Tata CLiQ,E-commerce,card,DEV-17C459,Mumbai,payment,,1013
-2026-10-10T03:53:21.469Z,ACC865804,452,BigBasket,Grocery,upi,DEV-DA17BA,Bengaluru,payment,,651
-2026-10-10T03:53:39.205Z,ACC846860,3471,DMart,Grocery,card,DEV-FD979E,Bengaluru,payment,,1135
-2026-10-10T03:53:44.951Z,ACC253757,415,Uber,Transport,upi,DEV-2009F4,Delhi,payment,,2775
-2026-10-10T03:53:51.932Z,ACC989280,90,Chai Point,Food & beverage,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T03:54:06.734Z,ACC865346,234,Amazon India,E-commerce,card,DEV-712D09,Mumbai,payment,,2748
-2026-10-10T03:54:17.128Z,ACC917695,729,Indian Oil,Fuel,card,DEV-02984B,Mumbai,payment,,1182
-2026-10-10T03:54:31.419Z,ACC384451,409,Jio Recharge,Telecom,upi,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T03:54:45.573Z,ACC238581,1914,Airtel Payments,Telecom,netbanking,DEV-F2DD23,Mumbai,payment,,2365
-2026-10-10T03:54:55.895Z,ACC880183,105,Uber,Transport,upi,DEV-A0B620,Bengaluru,payment,,83
-2026-10-10T03:55:12.606Z,ACC203258,223,Swiggy,Food delivery,upi,DEV-14619B,Delhi,payment,,671
-2026-10-10T03:55:20.723Z,ACC989280,90,Local Kirana Store,Grocery,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T03:55:29.377Z,ACC475838,766,BookMyShow,Entertainment,upi,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T03:55:36.315Z,ACC701713,431,Local Kirana Store,Grocery,card,DEV-2E6263,Kochi,payment,,1632
-2026-10-10T03:55:52.919Z,ACC982642,256,Local Kirana Store,Grocery,upi,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T03:55:59.328Z,ACC114750,816,Myntra,Fashion,card,DEV-F7BAC5,Lucknow,payment,,2366
-2026-10-10T03:56:09.431Z,ACC745450,292,Zomato,Food delivery,upi,DEV-A50351,Jaipur,payment,,349
-2026-10-10T03:56:16.927Z,ACC384451,230,Apollo Pharmacy,Health,upi,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T03:56:31.064Z,ACC968222,1194,Myntra,Fashion,upi,DEV-79CACA,Ahmedabad,payment,,385
-2026-10-10T03:56:47.402Z,ACC667214,864,BigBasket,Grocery,upi,DEV-141748,Delhi,payment,,276
-2026-10-10T03:56:54.799Z,ACC384451,270,Zomato,Food delivery,upi,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T03:57:07.316Z,ACC114750,465,Jio Recharge,Telecom,upi,DEV-F7BAC5,Lucknow,payment,,2366
-2026-10-10T03:57:15.866Z,ACC745450,2980,BigBasket,Grocery,upi,DEV-A50351,Jaipur,payment,,349
-2026-10-10T03:57:28.959Z,ACC968222,470,Jio Recharge,Telecom,upi,DEV-94F93B,Ahmedabad,payment,,385
-2026-10-10T03:57:42.956Z,ACC481113,1071,IRCTC,Travel,netbanking,DEV-F43B1C,Delhi,payment,,588
-2026-10-10T03:57:48.139Z,ACC572356,7130,Tata CLiQ,E-commerce,card,DEV-CEA1F8,Delhi,payment,,438
-2026-10-10T03:58:05.276Z,ACC701713,3377,IRCTC,Travel,netbanking,DEV-E7BDF2,Kochi,payment,,1632
-2026-10-10T03:58:22.490Z,ACC658122,913,Blinkit,Grocery,upi,DEV-9586D7,Delhi,payment,,2506
-2026-10-10T03:58:31.071Z,ACC307560,278,Swiggy,Food delivery,upi,DEV-434634,Kolkata,payment,,1345
-2026-10-10T03:58:48.964Z,ACC992136,64,Local Kirana Store,Grocery,upi,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T03:59:00.763Z,ACC572356,1065,Local Kirana Store,Grocery,upi,DEV-CEA1F8,Delhi,payment,,438
-2026-10-10T03:59:16.979Z,ACC475838,446,Local Kirana Store,Grocery,upi,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T03:59:33.310Z,ACC918860,118,Chai Point,Food & beverage,upi,DEV-64B31B,Kolkata,payment,,997
-2026-10-10T03:59:42.294Z,ACC572356,573,Swiggy,Food delivery,upi,DEV-CEA1F8,Delhi,payment,,438
-2026-10-10T03:59:47.987Z,ACC846860,1086,BigBasket,Grocery,upi,DEV-FD979E,Bengaluru,payment,,1135
-2026-10-10T03:59:53.483Z,ACC678575,501,Zomato,Food delivery,upi,DEV-F4452D,Delhi,payment,,379
-2026-10-10T04:00:06.712Z,ACC417044,1186,Local Kirana Store,Grocery,upi,DEV-B13C4F,Ahmedabad,payment,,285
-2026-10-10T04:00:18.506Z,ACC982642,221,Local Kirana Store,Grocery,upi,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T04:00:26.687Z,ACC340751,300,Zomato,Food delivery,upi,DEV-2C45DA,Mumbai,payment,,1721
-2026-10-10T04:00:37.275Z,ACC599751,205,Jio Recharge,Telecom,upi,DEV-8E89AB,Hyderabad,payment,,684
-2026-10-10T04:00:52.627Z,ACC523390,85,Uber,Transport,upi,DEV-084721,Delhi,payment,,314
-2026-10-10T04:01:05.443Z,ACC982642,302,Flipkart,E-commerce,card,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T04:01:23.233Z,ACC745450,274,Swiggy,Food delivery,upi,DEV-A50351,Jaipur,payment,,349
-2026-10-10T04:01:30.338Z,ACC942436,549,IRCTC,Travel,netbanking,DEV-1BFDE1,Ahmedabad,payment,,2399
-2026-10-10T04:01:37.983Z,ACC968222,155,Zomato,Food delivery,netbanking,DEV-79CACA,Ahmedabad,payment,,385
-2026-10-10T04:01:55.137Z,ACC992136,620,Airtel Payments,Telecom,netbanking,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T04:02:10.262Z,ACC523390,1194,Flipkart,E-commerce,card,DEV-084721,Delhi,payment,,314
-2026-10-10T04:02:28.104Z,ACC989280,654,Uber,Transport,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T04:02:37.664Z,ACC667214,306,Zomato,Food delivery,upi,DEV-141748,Delhi,payment,,276
-2026-10-10T04:02:43.717Z,ACC531232,552,Apollo Pharmacy,Health,netbanking,DEV-545F9A,Chandigarh,payment,,169
-2026-10-10T04:02:54.187Z,ACC456948,757,Apollo Pharmacy,Health,upi,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T04:03:06.832Z,ACC203258,235,Swiggy,Food delivery,upi,DEV-14619B,Delhi,payment,,671
-2026-10-10T04:03:14.806Z,ACC572356,4548,HP Petrol,Fuel,upi,DEV-CEA1F8,Delhi,payment,,438
-2026-10-10T04:03:24.826Z,ACC661246,1018,Blinkit,Grocery,card,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T04:03:35.070Z,ACC865804,406,Flipkart,E-commerce,card,DEV-71115B,Bengaluru,payment,,651
-2026-10-10T04:03:49.781Z,ACC384451,10665,Reliance Digital,Electronics,card,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T04:03:59.835Z,ACC918860,76,Local Kirana Store,Grocery,upi,DEV-64B31B,Kolkata,payment,,997
-2026-10-10T04:04:04.942Z,ACC481113,2686,DMart,Grocery,card,DEV-D74238,Delhi,payment,,588
-2026-10-10T04:04:18.659Z,ACC384451,3715,IRCTC,Travel,netbanking,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T04:04:25.519Z,ACC667840,336,Ola,Transport,netbanking,DEV-AA9A09,Chennai,payment,,672
-2026-10-10T04:04:33.876Z,ACC992136,212,Jio Recharge,Telecom,card,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T04:04:37.904Z,ACC238581,3775,Myntra,Fashion,card,DEV-F2DD23,Mumbai,payment,,2365
-2026-10-10T04:04:52.484Z,ACC531232,582,Swiggy,Food delivery,upi,DEV-7E9F1F,Chandigarh,payment,,169
-2026-10-10T04:05:04.084Z,ACC846860,224,Jio Recharge,Telecom,upi,DEV-FD979E,Bengaluru,payment,,1135
-2026-10-10T04:05:10.885Z,ACC481113,43273,Reliance Digital,Electronics,card,DEV-F43B1C,Delhi,payment,,588
-2026-10-10T04:05:23.059Z,ACC606827,395,Jio Recharge,Telecom,upi,DEV-38D26A,Mumbai,payment,,170
-2026-10-10T04:05:36.583Z,ACC371575,500,Myntra,Fashion,card,DEV-45E768,Chennai,payment,,1983
-2026-10-10T04:05:51.375Z,ACC238581,1828,Flipkart,E-commerce,upi,DEV-F2DD23,Mumbai,payment,,2365
-2026-10-10T04:06:05.151Z,ACC658122,709,Flipkart,E-commerce,card,DEV-9586D7,Delhi,payment,,2506
-2026-10-10T04:06:14.183Z,ACC678575,1675,Flipkart,E-commerce,card,DEV-F4452D,Delhi,payment,,379
-2026-10-10T04:06:20.252Z,ACC238581,393,Chai Point,Food & beverage,upi,DEV-F2DD23,Mumbai,payment,,2365
-2026-10-10T04:06:27.684Z,ACC667214,838,Uber,Transport,upi,DEV-141748,Delhi,payment,,276
-2026-10-10T04:06:33.480Z,ACC667214,2527,IRCTC,Travel,netbanking,DEV-141748,Delhi,payment,,276
-2026-10-10T04:06:40.582Z,ACC384451,140,Uber,Transport,upi,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T04:06:50.938Z,ACC238581,10792,Amazon India,E-commerce,card,DEV-F2DD23,Mumbai,payment,,2365
-2026-10-10T04:07:06.844Z,ACC650134,27626,Reliance Digital,Electronics,card,DEV-E84029,Pune,payment,,1902
-2026-10-10T04:07:19.870Z,ACC340751,427,BigBasket,Grocery,upi,DEV-2C45DA,Mumbai,payment,,1721
-2026-10-10T04:07:24.054Z,ACC968222,200,BookMyShow,Entertainment,upi,DEV-94F93B,Ahmedabad,payment,,385
-2026-10-10T04:07:29.273Z,ACC531232,584,Swiggy,Food delivery,upi,DEV-545F9A,Chandigarh,payment,,169
-2026-10-10T04:07:43.442Z,ACC678575,4532,DMart,Grocery,card,DEV-F4452D,Delhi,payment,,379
-2026-10-10T04:07:47.793Z,ACC307560,948,DMart,Grocery,card,DEV-434634,Kolkata,payment,,1345
-2026-10-10T04:07:58.922Z,ACC456948,165,Swiggy,Food delivery,upi,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T04:08:10.312Z,ACC865804,5496,Flipkart,E-commerce,card,DEV-DA17BA,Bengaluru,payment,,651
-2026-10-10T04:08:25.785Z,ACC475838,497,Local Kirana Store,Grocery,upi,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T04:08:37.526Z,ACC865346,180,Swiggy,Food delivery,upi,DEV-712D09,Mumbai,payment,,2748
-2026-10-10T04:08:44.821Z,ACC650134,648,Airtel Payments,Telecom,netbanking,DEV-E84029,Pune,payment,,1902
-2026-10-10T04:09:01.276Z,ACC606827,1506,Blinkit,Grocery,upi,DEV-38D26A,Mumbai,payment,,170
-2026-10-10T04:09:08.650Z,ACC327984,489,Blinkit,Grocery,card,DEV-11B88A,Chennai,payment,,2752
-2026-10-10T04:09:26.111Z,ACC989280,797,Swiggy,Food delivery,netbanking,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T04:09:30.881Z,ACC667840,2123,HP Petrol,Fuel,upi,DEV-AA9A09,Chennai,payment,,672
-2026-10-10T04:09:42.528Z,ACC475838,462,Amazon India,E-commerce,card,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T04:09:57.655Z,ACC307560,809,Swiggy,Food delivery,upi,DEV-434634,Kolkata,payment,,1345
-2026-10-10T04:10:09.819Z,ACC992136,2398,DMart,Grocery,card,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T04:10:23.338Z,ACC371575,80,Uber,Transport,card,DEV-45E768,Chennai,payment,,1983
-2026-10-10T04:10:37.765Z,ACC918860,447,Amazon India,E-commerce,card,DEV-64B31B,Kolkata,payment,,997
-2026-10-10T04:10:46.922Z,ACC207991,1288,Blinkit,Grocery,upi,DEV-17C459,Mumbai,payment,,1013
-2026-10-10T04:10:53.460Z,ACC880183,225,Uber,Transport,upi,DEV-A0B620,Bengaluru,payment,,83
-2026-10-10T04:11:01.010Z,ACC207991,120,Ola,Transport,netbanking,DEV-17C459,Mumbai,payment,,1013
-2026-10-10T04:11:18.727Z,ACC968222,150,Swiggy,Food delivery,upi,DEV-79CACA,Ahmedabad,payment,,385
-2026-10-10T04:11:30.813Z,ACC658122,107,Ola,Transport,netbanking,DEV-9586D7,Delhi,payment,,2506
-2026-10-10T04:11:41.079Z,ACC307560,3428,BigBasket,Grocery,upi,DEV-434634,Kolkata,payment,,1345
-2026-10-10T04:11:52.673Z,ACC114750,150,Zomato,Food delivery,upi,DEV-BF4DC8,Lucknow,payment,,2366
-2026-10-10T04:12:04.186Z,ACC523390,420,Jio Recharge,Telecom,upi,DEV-084721,Delhi,payment,,314
-2026-10-10T04:12:18.777Z,ACC678575,1310,Local Kirana Store,Grocery,upi,DEV-F4452D,Delhi,payment,,379
-2026-10-10T04:12:31.857Z,ACC531232,574,BigBasket,Grocery,netbanking,DEV-7E9F1F,Chandigarh,payment,,169
-2026-10-10T04:12:42.148Z,ACC658122,373,IRCTC,Travel,card,DEV-9586D7,Delhi,payment,,2506
-2026-10-10T04:12:53.050Z,ACC918860,5438,IRCTC,Travel,netbanking,DEV-64B31B,Kolkata,payment,,997
-2026-10-10T04:12:57.491Z,ACC667214,116,Uber,Transport,netbanking,DEV-141748,Delhi,payment,,276
-2026-10-10T04:13:02.148Z,ACC531232,315,Zomato,Food delivery,upi,DEV-7E9F1F,Chandigarh,payment,,169
-2026-10-10T04:13:09.222Z,ACC384451,5046,MakeMyTrip,Travel,card,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T04:13:15.644Z,ACC327984,185,Chai Point,Food & beverage,upi,DEV-11B88A,Chennai,payment,,2752
-2026-10-10T04:13:32.343Z,ACC340751,310,IRCTC,Travel,upi,DEV-2C45DA,Mumbai,payment,,1721
-2026-10-10T04:13:47.464Z,ACC475838,159,Swiggy,Food delivery,upi,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T04:13:52.587Z,ACC658122,200,BookMyShow,Entertainment,netbanking,DEV-9586D7,Delhi,payment,,2506
-2026-10-10T04:14:05.522Z,ACC456948,318,Local Kirana Store,Grocery,upi,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T04:14:22.467Z,ACC701713,744,Blinkit,Grocery,netbanking,DEV-E7BDF2,Kochi,payment,,1632
-2026-10-10T04:14:29.771Z,ACC846860,129,Blinkit,Grocery,netbanking,DEV-FD979E,Bengaluru,payment,,1135
-2026-10-10T04:14:43.567Z,ACC745450,5089,DMart,Grocery,card,DEV-A50351,Jaipur,payment,,349
-2026-10-10T04:14:59.637Z,ACC481113,438,Jio Recharge,Telecom,upi,DEV-D74238,Delhi,payment,,588
-2026-10-10T04:15:13.794Z,ACC599751,722,Amazon India,E-commerce,card,DEV-8E89AB,Hyderabad,payment,,684
-2026-10-10T04:15:24.461Z,ACC307560,5076,Tata CLiQ,E-commerce,card,DEV-434634,Kolkata,payment,,1345
-2026-10-10T04:15:35.117Z,ACC481113,153,Uber,Transport,upi,DEV-D74238,Delhi,payment,,588
-2026-10-10T04:15:45.037Z,ACC701713,525,Swiggy,Food delivery,upi,DEV-2E6263,Kochi,payment,,1632
-2026-10-10T04:15:51.840Z,ACC456948,185,Ola,Transport,upi,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T04:15:56.051Z,ACC982642,2097,Indian Oil,Fuel,card,DEV-FE5E2B,Delhi,payment,,156
-2026-10-10T04:16:02.587Z,ACC456948,735,Local Kirana Store,Grocery,netbanking,DEV-CE0F06,Chennai,payment,,2329
-2026-10-10T04:16:19.938Z,ACC114750,208,Airtel Payments,Telecom,netbanking,DEV-BF4DC8,Lucknow,payment,,2366
-2026-10-10T04:16:37.655Z,ACC989280,1353,BigBasket,Grocery,netbanking,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T04:16:54.639Z,ACC917695,24183,Tanishq,Jewellery,card,DEV-93C4E4,Pune,payment,,1182
-2026-10-10T04:17:02.976Z,ACC989280,240,Ola,Transport,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T04:17:07.435Z,ACC701713,210,Chai Point,Food & beverage,netbanking,DEV-E7BDF2,Kochi,payment,,1632
-2026-10-10T04:17:21.077Z,ACC481113,392,Ola,Transport,netbanking,DEV-D74238,Delhi,payment,,588
-2026-10-10T04:17:33.747Z,ACC701713,3372,IRCTC,Travel,card,DEV-2E6263,Kochi,payment,,1632
-2026-10-10T04:17:49.888Z,ACC523390,276,Amazon India,E-commerce,card,DEV-084721,Delhi,payment,,314
-2026-10-10T04:18:06.211Z,ACC968222,300,IRCTC,Travel,netbanking,DEV-79CACA,Ahmedabad,payment,,385
-2026-10-10T04:18:17.668Z,ACC238581,1481,Swiggy,Food delivery,upi,DEV-F2DD23,Mumbai,payment,,2365
-2026-10-10T04:18:28.943Z,ACC572356,459,Chai Point,Food & beverage,card,DEV-CEA1F8,Delhi,payment,,438
-2026-10-10T04:18:38.820Z,ACC667214,959,Local Kirana Store,Grocery,upi,DEV-141748,Delhi,payment,,276
-2026-10-10T04:18:54.320Z,ACC253757,509,Blinkit,Grocery,netbanking,DEV-2009F4,Delhi,payment,,2775
-2026-10-10T04:19:03.665Z,ACC327984,128,Uber,Transport,upi,DEV-11B88A,Chennai,payment,,2752
-2026-10-10T04:19:09.364Z,ACC989280,200,Uber,Transport,upi,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T04:19:21.076Z,ACC865346,383,HP Petrol,Fuel,upi,DEV-712D09,Mumbai,payment,,2748
-2026-10-10T04:19:29.188Z,ACC114750,669,Amazon India,E-commerce,card,DEV-F7BAC5,Lucknow,payment,,2366
-2026-10-10T04:19:36.089Z,ACC992136,723,BigBasket,Grocery,upi,DEV-3A18FC,Kochi,payment,,51
-2026-10-10T04:19:46.103Z,ACC745450,919,Ola,Transport,upi,DEV-A50351,Jaipur,payment,,349
-2026-10-10T04:19:53.736Z,ACC667840,11635,Croma,Electronics,card,DEV-AA9A09,Chennai,payment,,672
-2026-10-10T04:20:07.154Z,ACC965334,300,BigBasket,Grocery,upi,DEV-6D94C7,Mumbai,payment,,1094
-2026-10-10T04:20:14.314Z,ACC114750,1131,Flipkart,E-commerce,netbanking,DEV-BF4DC8,Lucknow,payment,,2366
-2026-10-10T04:20:26.183Z,ACC965334,500,Tata CLiQ,E-commerce,netbanking,DEV-6D94C7,Mumbai,payment,,1094
-2026-10-10T04:20:31.892Z,ACC968222,1086,Myntra,Fashion,netbanking,DEV-94F93B,Ahmedabad,payment,,385
-2026-10-10T04:20:39.691Z,ACC531232,366,Ola,Transport,upi,DEV-7E9F1F,Chandigarh,payment,,169
-2026-10-10T04:20:51.899Z,ACC846860,1363,Flipkart,E-commerce,netbanking,DEV-FD979E,Bengaluru,payment,,1135
-2026-10-10T04:21:08.197Z,ACC384451,590,Jio Recharge,Telecom,upi,DEV-3C4017,Lucknow,payment,,856
-2026-10-10T04:21:22.455Z,ACC880183,987,HP Petrol,Fuel,upi,DEV-A0B620,Bengaluru,payment,,83
-2026-10-10T04:21:36.995Z,ACC531232,629,IRCTC,Travel,netbanking,DEV-545F9A,Chandigarh,payment,,169
-2026-10-10T04:21:49.190Z,ACC701713,348,Swiggy,Food delivery,upi,DEV-E7BDF2,Kochi,payment,,1632
-2026-10-10T04:22:00.252Z,ACC661246,1596,Amazon India,E-commerce,card,DEV-2C9FAA,Pune,payment,,1273
-2026-10-10T04:22:06.082Z,ACC599751,172,Uber,Transport,upi,DEV-8E89AB,Hyderabad,payment,,684
-2026-10-10T04:22:19.047Z,ACC417044,592,Local Kirana Store,Grocery,upi,DEV-F98813,Ahmedabad,payment,,285
-2026-10-10T04:22:33.129Z,ACC667214,158,Local Kirana Store,Grocery,netbanking,DEV-141748,Delhi,payment,,276
-2026-10-10T04:22:39.939Z,ACC207991,933,Swiggy,Food delivery,upi,DEV-17C459,Mumbai,payment,,1013
-2026-10-10T04:22:44.640Z,ACC340751,159,Ola,Transport,upi,DEV-2C45DA,Mumbai,payment,,1721
-2026-10-10T04:22:50.346Z,ACC880183,420,Local Kirana Store,Grocery,card,DEV-A0B620,Bengaluru,payment,,83
-2026-10-10T04:23:01.948Z,ACC577822,609,Apollo Pharmacy,Health,upi,DEV-C07628,Lucknow,payment,,1241
-2026-10-10T04:23:07.765Z,ACC475838,2732,BigBasket,Grocery,upi,DEV-C7621C,Jaipur,payment,,1787
-2026-10-10T04:23:21.035Z,ACC577822,892,Zomato,Food delivery,upi,DEV-923E24,Lucknow,payment,,1241
-2026-10-10T04:23:35.518Z,ACC481113,2327,Myntra,Fashion,card,DEV-D74238,Delhi,payment,,588
-2026-10-10T04:23:47.169Z,ACC531232,533,Jio Recharge,Telecom,upi,DEV-7E9F1F,Chandigarh,payment,,169
-2026-10-10T04:23:52.988Z,ACC942436,87,Uber,Transport,card,DEV-1BFDE1,Ahmedabad,payment,,2399
-2026-10-10T04:24:03.761Z,ACC701713,424,Jio Recharge,Telecom,upi,DEV-2E6263,Kochi,payment,,1632
-2026-10-10T04:24:11.253Z,ACC989280,2971,IRCTC,Travel,netbanking,DEV-AECBCD,Kolkata,payment,,1671
-2026-10-10T04:24:29.017Z,ACC968222,1838,DMart,Grocery,card,DEV-79CACA,Ahmedabad,payment,,385
-2026-10-10T04:24:36.579Z,ACC340751,1426,HP Petrol,Fuel,upi,DEV-2C45DA,Mumbai,payment,,1721
-2026-10-10T04:24:46.371Z,ACC965334,50,Local Kirana Store,Grocery,upi,DEV-6D94C7,Mumbai,payment,,1094
-2026-10-10T04:24:55.073Z,ACC475838,721,BookMyShow,Entertainment,card,DEV-C7621C,Jaipur,payment,,1787
+2026-10-10 09:00:08,ACC650134,138,Ola,Transport,upi,DEV-E84029,Pune,payment,,1902
+2026-10-10 09:00:23,ACC846860,356,Swiggy,Food delivery,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:00:31,ACC307560,488,Uber,Transport,upi,DEV-434634,Kolkata,payment,,1345
+2026-10-10 09:00:41,ACC481113,87,Local Kirana Store,Grocery,upi,DEV-F43B1C,Delhi,payment,,588
+2026-10-10 09:00:55,ACC989280,1560,Swiggy,Food delivery,upi,DEV-AECBCD,Kolkata,payment,,1671
+2026-10-10 09:01:06,ACC880183,619,Airtel Payments,Telecom,card,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:01:22,ACC846860,233,Local Kirana Store,Grocery,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:01:36,ACC340751,479,Swiggy,Food delivery,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:01:53,ACC846860,1489,Blinkit,Grocery,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:02:09,ACC207991,298,Airtel Payments,Telecom,netbanking,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:02:21,ACC918860,74,Local Kirana Store,Grocery,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:02:25,ACC327984,100,Blinkit,Grocery,upi,DEV-11B88A,Chennai,payment,,2752
+2026-10-10 09:02:29,ACC982642,1193,Apollo Pharmacy,Health,upi,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:02:33,ACC918860,2369,BigBasket,Grocery,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:02:44,ACC238581,10860,Amazon India,E-commerce,card,DEV-F2DD23,Mumbai,payment,,2365
+2026-10-10 09:02:51,ACC203258,257,Uber,Transport,upi,DEV-F1EF7A,Delhi,payment,,671
+2026-10-10 09:03:07,ACC253757,1106,Apollo Pharmacy,Health,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:03:12,ACC340751,236,Uber,Transport,card,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:03:20,ACC203258,596,Tata CLiQ,E-commerce,card,DEV-14619B,Delhi,payment,,671
+2026-10-10 09:03:34,ACC701713,7112,Amazon India,E-commerce,card,DEV-E7BDF2,Kochi,payment,,1632
+2026-10-10 09:03:39,ACC371575,150,Swiggy,Food delivery,upi,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:03:47,ACC661246,539,BigBasket,Grocery,upi,DEV-2C9FAA,Pune,payment,,1273
+2026-10-10 09:03:58,ACC114750,479,Ola,Transport,upi,DEV-F7BAC5,Lucknow,payment,,2366
+2026-10-10 09:04:07,ACC599751,812,Zomato,Food delivery,card,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:04:16,ACC667840,315,Uber,Transport,upi,DEV-AA9A09,Chennai,payment,,672
+2026-10-10 09:04:23,ACC417044,11383,Flipkart,E-commerce,netbanking,DEV-F98813,Ahmedabad,payment,,285
+2026-10-10 09:04:34,ACC114750,5998,MakeMyTrip,Travel,card,DEV-F7BAC5,Lucknow,payment,,2366
+2026-10-10 09:04:42,ACC865346,2552,Amazon India,E-commerce,card,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:04:47,ACC307560,345,Local Kirana Store,Grocery,card,DEV-434634,Kolkata,payment,,1345
+2026-10-10 09:04:55,ACC327984,222,Swiggy,Food delivery,upi,DEV-11B88A,Chennai,payment,,2752
+2026-10-10 09:05:07,ACC865346,200,BookMyShow,Entertainment,upi,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:05:11,ACC745450,1255,BookMyShow,Entertainment,upi,DEV-A50351,Jaipur,payment,,349
+2026-10-10 09:05:28,ACC606827,1769,DMart,Grocery,card,DEV-38D26A,Mumbai,payment,,170
+2026-10-10 09:05:45,ACC307560,1582,IRCTC,Travel,netbanking,DEV-434634,Kolkata,payment,,1345
+2026-10-10 09:06:02,ACC340751,821,BigBasket,Grocery,netbanking,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:06:09,ACC661246,834,Amazon India,E-commerce,card,DEV-2C9FAA,Pune,payment,,1273
+2026-10-10 09:06:16,ACC481113,348,Chai Point,Food & beverage,upi,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:06:32,ACC942436,236,Local Kirana Store,Grocery,card,DEV-1BFDE1,Ahmedabad,payment,,2399
+2026-10-10 09:06:46,ACC238581,3267,Myntra,Fashion,card,DEV-F2DD23,Mumbai,payment,,2365
+2026-10-10 09:06:56,ACC678575,1127,Uber,Transport,upi,DEV-F4452D,Delhi,payment,,379
+2026-10-10 09:07:08,ACC678575,633,Zomato,Food delivery,upi,DEV-F4452D,Delhi,payment,,379
+2026-10-10 09:07:18,ACC456948,411,Blinkit,Grocery,netbanking,DEV-CE0F06,Chennai,payment,,2329
+2026-10-10 09:07:35,ACC701713,727,Myntra,Fashion,card,DEV-2E6263,Kochi,payment,,1632
+2026-10-10 09:07:40,ACC481113,410,BookMyShow,Entertainment,upi,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:07:46,ACC880183,6235,Amazon India,E-commerce,card,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:07:52,ACC572356,3092,HP Petrol,Fuel,upi,DEV-F8F956,Delhi,payment,,438
+2026-10-10 09:08:10,ACC965334,619,HP Petrol,Fuel,netbanking,DEV-6D94C7,Mumbai,payment,,1094
+2026-10-10 09:08:23,ACC678575,538,Amazon India,E-commerce,card,DEV-F4452D,Delhi,payment,,379
+2026-10-10 09:08:35,ACC965334,2090,DMart,Grocery,card,DEV-6D94C7,Mumbai,payment,,1094
+2026-10-10 09:08:43,ACC599751,2125,Amazon India,E-commerce,card,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:08:54,ACC918860,223,Swiggy,Food delivery,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:09:08,ACC203258,1240,Blinkit,Grocery,upi,DEV-F1EF7A,Delhi,payment,,671
+2026-10-10 09:09:18,ACC203258,177,Zomato,Food delivery,upi,DEV-F1EF7A,Delhi,payment,,671
+2026-10-10 09:09:24,ACC371575,657,Jio Recharge,Telecom,upi,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:09:33,ACC481113,4060,DMart,Grocery,card,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:09:49,ACC114750,677,Local Kirana Store,Grocery,upi,DEV-F7BAC5,Lucknow,payment,,2366
+2026-10-10 09:10:02,ACC371575,150,Zomato,Food delivery,upi,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:10:11,ACC417044,6508,DMart,Grocery,card,DEV-B13C4F,Ahmedabad,payment,,285
+2026-10-10 09:10:23,ACC475838,121,Uber,Transport,upi,DEV-C7621C,Jaipur,payment,,1787
+2026-10-10 09:10:34,ACC745450,942,Swiggy,Food delivery,upi,DEV-A50351,Jaipur,payment,,349
+2026-10-10 09:10:49,ACC880183,246,Chai Point,Food & beverage,upi,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:11:06,ACC880183,3158,Indian Oil,Fuel,card,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:11:16,ACC745450,104,Local Kirana Store,Grocery,netbanking,DEV-A50351,Jaipur,payment,,349
+2026-10-10 09:11:27,ACC207991,827,HP Petrol,Fuel,upi,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:11:40,ACC114750,354,Blinkit,Grocery,upi,DEV-BF4DC8,Lucknow,payment,,2366
+2026-10-10 09:11:57,ACC917695,349,Uber,Transport,netbanking,DEV-02984B,Mumbai,payment,,1182
+2026-10-10 09:12:12,ACC475838,653,Swiggy,Food delivery,upi,DEV-C7621C,Jaipur,payment,,1787
+2026-10-10 09:12:28,ACC880183,825,Local Kirana Store,Grocery,upi,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:12:45,ACC417044,836,Swiggy,Food delivery,upi,DEV-F98813,Ahmedabad,payment,,285
+2026-10-10 09:12:49,ACC918860,369,Local Kirana Store,Grocery,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:12:53,ACC658122,527,Blinkit,Grocery,card,DEV-9586D7,Delhi,payment,,2506
+2026-10-10 09:12:58,ACC942436,100,Blinkit,Grocery,upi,DEV-1BFDE1,Ahmedabad,payment,,2399
+2026-10-10 09:13:13,ACC114750,155,Swiggy,Food delivery,netbanking,DEV-F7BAC5,Lucknow,payment,,2366
+2026-10-10 09:13:18,ACC599751,2340,BigBasket,Grocery,upi,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:13:33,ACC678575,308,Swiggy,Food delivery,upi,DEV-F4452D,Delhi,payment,,379
+2026-10-10 09:13:41,ACC475838,453,Uber,Transport,card,DEV-C7621C,Jaipur,payment,,1787
+2026-10-10 09:13:56,ACC667214,3923,Indian Oil,Fuel,netbanking,DEV-141748,Delhi,payment,,276
+2026-10-10 09:14:03,ACC846860,350,Zomato,Food delivery,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:14:11,ACC114750,1129,Indian Oil,Fuel,card,DEV-BF4DC8,Lucknow,payment,,2366
+2026-10-10 09:14:17,ACC238581,211,Blinkit,Grocery,upi,DEV-F2DD23,Mumbai,payment,,2365
+2026-10-10 09:14:34,ACC880183,115,Chai Point,Food & beverage,card,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:14:38,ACC572356,2323,Indian Oil,Fuel,card,DEV-F8F956,Delhi,payment,,438
+2026-10-10 09:14:49,ACC417044,4773,BigBasket,Grocery,netbanking,DEV-F98813,Ahmedabad,payment,,285
+2026-10-10 09:14:56,ACC114750,192,Swiggy,Food delivery,upi,DEV-F7BAC5,Lucknow,payment,,2366
+2026-10-10 09:15:12,ACC577822,305,Zomato,Food delivery,upi,DEV-923E24,Lucknow,payment,,1241
+2026-10-10 09:15:29,ACC481113,4272,MakeMyTrip,Travel,card,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:15:34,ACC982642,2032,Blinkit,Grocery,upi,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:15:47,ACC968222,150,Zomato,Food delivery,upi,DEV-94F93B,Ahmedabad,payment,,385
+2026-10-10 09:15:54,ACC989280,8584,MakeMyTrip,Travel,card,DEV-AECBCD,Kolkata,payment,,1671
+2026-10-10 09:16:07,ACC531232,50,Chai Point,Food & beverage,upi,DEV-545F9A,Chandigarh,payment,,169
+2026-10-10 09:16:16,ACC114750,200,Amazon India,E-commerce,card,DEV-BF4DC8,Lucknow,payment,,2366
+2026-10-10 09:16:31,ACC207991,1778,Blinkit,Grocery,card,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:16:48,ACC667214,474,Swiggy,Food delivery,netbanking,DEV-141748,Delhi,payment,,276
+2026-10-10 09:16:55,ACC701713,670,Ola,Transport,upi,DEV-2E6263,Kochi,payment,,1632
+2026-10-10 09:17:08,ACC253757,335,IRCTC,Travel,card,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:17:19,ACC417044,357,Swiggy,Food delivery,card,DEV-F98813,Ahmedabad,payment,,285
+2026-10-10 09:17:32,ACC865804,971,Blinkit,Grocery,upi,DEV-71115B,Bengaluru,payment,,651
+2026-10-10 09:17:48,ACC307560,1052,Swiggy,Food delivery,upi,DEV-434634,Kolkata,payment,,1345
+2026-10-10 09:17:55,ACC475838,1724,Amazon India,E-commerce,card,DEV-C7621C,Jaipur,payment,,1787
+2026-10-10 09:18:02,ACC658122,889,DMart,Grocery,card,DEV-9586D7,Delhi,payment,,2506
+2026-10-10 09:18:10,ACC572356,82,Local Kirana Store,Grocery,upi,DEV-F8F956,Delhi,payment,,438
+2026-10-10 09:18:24,ACC531232,205,BookMyShow,Entertainment,upi,DEV-545F9A,Chandigarh,payment,,169
+2026-10-10 09:18:39,ACC340751,238,Swiggy,Food delivery,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:18:56,ACC531232,568,Swiggy,Food delivery,upi,DEV-545F9A,Chandigarh,payment,,169
+2026-10-10 09:19:13,ACC942436,50,Local Kirana Store,Grocery,card,DEV-1BFDE1,Ahmedabad,payment,,2399
+2026-10-10 09:19:29,ACC340751,214,Airtel Payments,Telecom,card,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:19:41,ACC989280,2044,Indian Oil,Fuel,card,DEV-AECBCD,Kolkata,payment,,1671
+2026-10-10 09:19:52,ACC599751,185,Zomato,Food delivery,upi,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:20:03,ACC965334,100,Apollo Pharmacy,Health,card,DEV-6D94C7,Mumbai,payment,,1094
+2026-10-10 09:20:07,ACC114750,249,Ola,Transport,card,DEV-BF4DC8,Lucknow,payment,,2366
+2026-10-10 09:20:18,ACC701713,196,Swiggy,Food delivery,upi,DEV-2E6263,Kochi,payment,,1632
+2026-10-10 09:20:32,ACC307560,700,Airtel Payments,Telecom,upi,DEV-434634,Kolkata,payment,,1345
+2026-10-10 09:20:43,ACC942436,150,Zomato,Food delivery,upi,DEV-1BFDE1,Ahmedabad,payment,,2399
+2026-10-10 09:20:50,ACC207991,894,Local Kirana Store,Grocery,upi,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:20:55,ACC384451,259,Zomato,Food delivery,upi,DEV-3C4017,Lucknow,payment,,856
+2026-10-10 09:21:07,ACC572356,9810,MakeMyTrip,Travel,card,DEV-F8F956,Delhi,payment,,438
+2026-10-10 09:21:14,ACC253757,321,Uber,Transport,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:21:29,ACC982642,256,Uber,Transport,upi,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:21:35,ACC989280,2566,Blinkit,Grocery,upi,DEV-AECBCD,Kolkata,payment,,1671
+2026-10-10 09:21:39,ACC982642,183,Local Kirana Store,Grocery,upi,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:21:50,ACC865346,93,Chai Point,Food & beverage,card,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:21:56,ACC327984,557,Zomato,Food delivery,upi,DEV-11B88A,Chennai,payment,,2752
+2026-10-10 09:22:06,ACC865346,106,Ola,Transport,upi,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:22:13,ACC982642,812,Ola,Transport,upi,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:22:27,ACC340751,686,Local Kirana Store,Grocery,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:22:38,ACC918860,1065,Blinkit,Grocery,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:22:52,ACC572356,44636,MakeMyTrip,Travel,card,DEV-C412F2,Bengaluru,payment,,438
+2026-10-10 09:22:59,ACC701713,70,Local Kirana Store,Grocery,upi,DEV-2E6263,Kochi,payment,,1632
+2026-10-10 09:23:12,ACC572356,485,IRCTC,Travel,card,DEV-CEA1F8,Delhi,payment,,438
+2026-10-10 09:23:25,ACC846860,630,Jio Recharge,Telecom,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:23:35,ACC606827,1266,DMart,Grocery,upi,DEV-38D26A,Mumbai,payment,,170
+2026-10-10 09:23:49,ACC846860,20972,Tanishq,Jewellery,card,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:23:58,ACC481113,310,Chai Point,Food & beverage,upi,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:24:07,ACC942436,53,Local Kirana Store,Grocery,upi,DEV-1BFDE1,Ahmedabad,payment,,2399
+2026-10-10 09:24:24,ACC650134,17034,Reliance Digital,Electronics,card,DEV-E84029,Pune,payment,,1902
+2026-10-10 09:24:42,ACC531232,273,Swiggy,Food delivery,upi,DEV-7E9F1F,Chandigarh,payment,,169
+2026-10-10 09:24:48,ACC606827,279,Blinkit,Grocery,upi,DEV-38D26A,Mumbai,payment,,170
+2026-10-10 09:25:01,ACC606827,1374,Apollo Pharmacy,Health,card,DEV-38D26A,Mumbai,payment,,170
+2026-10-10 09:25:11,ACC865346,150,Zomato,Food delivery,upi,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:25:25,ACC965334,958,Flipkart,E-commerce,upi,DEV-6D94C7,Mumbai,payment,,1094
+2026-10-10 09:25:37,ACC577822,1298,Swiggy,Food delivery,upi,DEV-C07628,Lucknow,payment,,1241
+2026-10-10 09:25:55,ACC456948,329,Local Kirana Store,Grocery,upi,DEV-CE0F06,Chennai,payment,,2329
+2026-10-10 09:26:07,ACC917695,150,Swiggy,Food delivery,upi,DEV-02984B,Mumbai,payment,,1182
+2026-10-10 09:26:12,ACC667214,1001,DMart,Grocery,card,DEV-141748,Delhi,payment,,276
+2026-10-10 09:26:21,ACC989280,1057,BigBasket,Grocery,upi,DEV-AECBCD,Kolkata,payment,,1671
+2026-10-10 09:26:33,ACC918860,326,Swiggy,Food delivery,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:26:49,ACC523390,608,Swiggy,Food delivery,upi,DEV-084721,Delhi,payment,,314
+2026-10-10 09:26:57,ACC207991,677,HP Petrol,Fuel,upi,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:27:03,ACC678575,647,BigBasket,Grocery,upi,DEV-F4452D,Delhi,payment,,379
+2026-10-10 09:27:11,ACC114750,634,Jio Recharge,Telecom,upi,DEV-BF4DC8,Lucknow,payment,,2366
+2026-10-10 09:27:21,ACC942436,470,Blinkit,Grocery,card,DEV-1BFDE1,Ahmedabad,payment,,2399
+2026-10-10 09:27:39,ACC523390,434,Blinkit,Grocery,netbanking,DEV-084721,Delhi,payment,,314
+2026-10-10 09:27:46,ACC745450,1148,Zomato,Food delivery,card,DEV-A50351,Jaipur,payment,,349
+2026-10-10 09:27:52,ACC253757,199,Jio Recharge,Telecom,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:28:00,ACC661246,839,Swiggy,Food delivery,upi,DEV-2C9FAA,Pune,payment,,1273
+2026-10-10 09:28:16,ACC340751,696,Blinkit,Grocery,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:28:22,ACC982642,250,Zomato,Food delivery,upi,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:28:26,ACC745450,91,Chai Point,Food & beverage,card,DEV-A50351,Jaipur,payment,,349
+2026-10-10 09:28:39,ACC340751,167,Local Kirana Store,Grocery,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:28:52,ACC678575,2344,Reliance Digital,Electronics,upi,DEV-F4452D,Delhi,payment,,379
+2026-10-10 09:28:59,ACC307560,885,Ola,Transport,upi,DEV-434634,Kolkata,payment,,1345
+2026-10-10 09:29:12,ACC456948,596,Zomato,Food delivery,upi,DEV-CE0F06,Chennai,payment,,2329
+2026-10-10 09:29:26,ACC238581,3709,Myntra,Fashion,card,DEV-F2DD23,Mumbai,payment,,2365
+2026-10-10 09:29:42,ACC846860,352,Zomato,Food delivery,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:29:51,ACC661246,491,Zomato,Food delivery,card,DEV-2C9FAA,Pune,payment,,1273
+2026-10-10 09:30:00,ACC606827,5657,Amazon India,E-commerce,upi,DEV-38D26A,Mumbai,payment,,170
+2026-10-10 09:30:16,ACC340751,836,BookMyShow,Entertainment,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:30:27,ACC599751,322,BigBasket,Grocery,upi,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:30:37,ACC606827,860,Zomato,Food delivery,upi,DEV-38D26A,Mumbai,payment,,170
+2026-10-10 09:30:50,ACC340751,370,Zomato,Food delivery,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:31:04,ACC238581,1132,Swiggy,Food delivery,upi,DEV-F2DD23,Mumbai,payment,,2365
+2026-10-10 09:31:16,ACC481113,278,Zomato,Food delivery,upi,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:31:22,ACC650134,278,Swiggy,Food delivery,upi,DEV-E84029,Pune,payment,,1902
+2026-10-10 09:31:36,ACC968222,268,Zomato,Food delivery,upi,DEV-94F93B,Ahmedabad,payment,,385
+2026-10-10 09:31:51,ACC340751,2607,DMart,Grocery,card,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:31:58,ACC667840,2371,IRCTC,Travel,netbanking,DEV-AA9A09,Chennai,payment,,672
+2026-10-10 09:32:05,ACC917695,1716,BigBasket,Grocery,upi,DEV-02984B,Mumbai,payment,,1182
+2026-10-10 09:32:20,ACC456948,642,DMart,Grocery,card,DEV-CE0F06,Chennai,payment,,2329
+2026-10-10 09:32:32,ACC661246,328,Flipkart,E-commerce,netbanking,DEV-2C9FAA,Pune,payment,,1273
+2026-10-10 09:32:39,ACC846860,57,Local Kirana Store,Grocery,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:32:44,ACC327984,598,Swiggy,Food delivery,netbanking,DEV-11B88A,Chennai,payment,,2752
+2026-10-10 09:32:57,ACC207991,1656,Blinkit,Grocery,upi,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:33:02,ACC650134,137,Uber,Transport,upi,DEV-E84029,Pune,payment,,1902
+2026-10-10 09:33:10,ACC661246,128,Local Kirana Store,Grocery,upi,DEV-2C9FAA,Pune,payment,,1273
+2026-10-10 09:33:27,ACC456948,67,Chai Point,Food & beverage,upi,DEV-CE0F06,Chennai,payment,,2329
+2026-10-10 09:33:33,ACC253757,372,Swiggy,Food delivery,netbanking,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:33:48,ACC327984,545,Zomato,Food delivery,upi,DEV-11B88A,Chennai,payment,,2752
+2026-10-10 09:33:58,ACC384451,7410,Amazon India,E-commerce,card,DEV-3C4017,Lucknow,payment,,856
+2026-10-10 09:34:12,ACC481113,439,Jio Recharge,Telecom,netbanking,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:34:22,ACC846860,1832,BigBasket,Grocery,card,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:34:30,ACC327984,300,BigBasket,Grocery,upi,DEV-11B88A,Chennai,payment,,2752
+2026-10-10 09:34:36,ACC523390,138,Chai Point,Food & beverage,card,DEV-084721,Delhi,payment,,314
+2026-10-10 09:34:51,ACC572356,472,Jio Recharge,Telecom,upi,DEV-CEA1F8,Delhi,payment,,438
+2026-10-10 09:35:09,ACC307560,5362,Flipkart,E-commerce,card,DEV-434634,Kolkata,payment,,1345
+2026-10-10 09:35:21,ACC865346,500,Swiggy,Food delivery,upi,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:35:26,ACC865804,4046,DMart,Grocery,card,DEV-71115B,Bengaluru,payment,,651
+2026-10-10 09:35:32,ACC965334,1562,BigBasket,Grocery,card,DEV-6D94C7,Mumbai,payment,,1094
+2026-10-10 09:35:45,ACC371575,933,IRCTC,Travel,netbanking,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:35:53,ACC661246,643,BigBasket,Grocery,netbanking,DEV-2C9FAA,Pune,payment,,1273
+2026-10-10 09:36:06,ACC942436,331,Amazon India,E-commerce,card,DEV-1BFDE1,Ahmedabad,payment,,2399
+2026-10-10 09:36:11,ACC865804,532,Amazon India,E-commerce,upi,DEV-71115B,Bengaluru,payment,,651
+2026-10-10 09:36:16,ACC253757,810,HP Petrol,Fuel,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:36:25,ACC572356,2547,Apollo Pharmacy,Health,upi,DEV-F8F956,Delhi,payment,,438
+2026-10-10 09:36:41,ACC531232,157,Zomato,Food delivery,upi,DEV-545F9A,Chandigarh,payment,,169
+2026-10-10 09:36:45,ACC701713,267,Swiggy,Food delivery,netbanking,DEV-2E6263,Kochi,payment,,1632
+2026-10-10 09:36:57,ACC253757,2362,Myntra,Fashion,card,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:37:09,ACC917695,824,Airtel Payments,Telecom,netbanking,DEV-02984B,Mumbai,payment,,1182
+2026-10-10 09:37:14,ACC658122,729,Blinkit,Grocery,upi,DEV-9586D7,Delhi,payment,,2506
+2026-10-10 09:37:31,ACC968222,489,BigBasket,Grocery,upi,DEV-94F93B,Ahmedabad,payment,,385
+2026-10-10 09:37:39,ACC207991,463,Indian Oil,Fuel,card,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:37:56,ACC371575,186,Zomato,Food delivery,upi,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:38:05,ACC745450,2683,Blinkit,Grocery,upi,DEV-A50351,Jaipur,payment,,349
+2026-10-10 09:38:18,ACC599751,604,Swiggy,Food delivery,upi,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:38:33,ACC918860,425,Uber,Transport,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:38:39,ACC667214,1785,Amazon India,E-commerce,card,DEV-141748,Delhi,payment,,276
+2026-10-10 09:38:56,ACC531232,449,Swiggy,Food delivery,upi,DEV-7E9F1F,Chandigarh,payment,,169
+2026-10-10 09:39:03,ACC992136,1958,DMart,Grocery,upi,DEV-3A18FC,Kochi,payment,,51
+2026-10-10 09:39:15,ACC253757,545,Zomato,Food delivery,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:39:20,ACC968222,254,Blinkit,Grocery,upi,DEV-94F93B,Ahmedabad,payment,,385
+2026-10-10 09:39:30,ACC417044,169,Blinkit,Grocery,card,DEV-B13C4F,Ahmedabad,payment,,285
+2026-10-10 09:39:39,ACC253757,50,Local Kirana Store,Grocery,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:39:50,ACC456948,2403,BigBasket,Grocery,card,DEV-CE0F06,Chennai,payment,,2329
+2026-10-10 09:39:57,ACC253757,342,Local Kirana Store,Grocery,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:40:12,ACC456948,381,Swiggy,Food delivery,upi,DEV-CE0F06,Chennai,payment,,2329
+2026-10-10 09:40:29,ACC846860,535,BigBasket,Grocery,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:40:41,ACC846860,1407,Indian Oil,Fuel,card,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:40:49,ACC989280,2054,Myntra,Fashion,card,DEV-AECBCD,Kolkata,payment,,1671
+2026-10-10 09:40:55,ACC203258,10122,Croma,Electronics,card,DEV-14619B,Delhi,payment,,671
+2026-10-10 09:41:06,ACC253757,50,Local Kirana Store,Grocery,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:41:15,ACC475838,624,Swiggy,Food delivery,netbanking,DEV-C7621C,Jaipur,payment,,1787
+2026-10-10 09:41:20,ACC865804,6233,Flipkart,E-commerce,card,DEV-DA17BA,Bengaluru,payment,,651
+2026-10-10 09:41:30,ACC667840,4801,Flipkart,E-commerce,card,DEV-AA9A09,Chennai,payment,,672
+2026-10-10 09:41:36,ACC965334,567,Amazon India,E-commerce,card,DEV-6D94C7,Mumbai,payment,,1094
+2026-10-10 09:41:45,ACC475838,2335,Indian Oil,Fuel,card,DEV-C7621C,Jaipur,payment,,1787
+2026-10-10 09:41:50,ACC865346,209,Amazon India,E-commerce,card,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:41:55,ACC577822,694,Uber,Transport,upi,DEV-923E24,Lucknow,payment,,1241
+2026-10-10 09:42:01,ACC865346,3812,Myntra,Fashion,card,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:42:14,ACC880183,286,Zomato,Food delivery,upi,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:42:22,ACC599751,58,Chai Point,Food & beverage,upi,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:42:37,ACC238581,91,Chai Point,Food & beverage,upi,DEV-F2DD23,Mumbai,payment,,2365
+2026-10-10 09:42:55,ACC253757,117,Chai Point,Food & beverage,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:43:05,ACC667840,237,Apollo Pharmacy,Health,upi,DEV-AA9A09,Chennai,payment,,672
+2026-10-10 09:43:21,ACC918860,239,Swiggy,Food delivery,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:43:38,ACC678575,14784,Flipkart,E-commerce,card,DEV-F4452D,Delhi,payment,,379
+2026-10-10 09:43:50,ACC572356,1032,Uber,Transport,upi,DEV-CEA1F8,Delhi,payment,,438
+2026-10-10 09:44:01,ACC371575,320,HP Petrol,Fuel,upi,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:44:14,ACC203258,908,Zomato,Food delivery,upi,DEV-F1EF7A,Delhi,payment,,671
+2026-10-10 09:44:21,ACC745450,186,Apollo Pharmacy,Health,upi,DEV-A50351,Jaipur,payment,,349
+2026-10-10 09:44:27,ACC531232,75,Chai Point,Food & beverage,upi,DEV-7E9F1F,Chandigarh,payment,,169
+2026-10-10 09:44:32,ACC918860,93,Local Kirana Store,Grocery,upi,DEV-64B31B,Kolkata,payment,,997
+2026-10-10 09:44:45,ACC992136,2186,Indian Oil,Fuel,card,DEV-3A18FC,Kochi,payment,,51
+2026-10-10 09:45:00,ACC599751,307,Amazon India,E-commerce,upi,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:45:15,ACC667214,3497,DMart,Grocery,card,DEV-141748,Delhi,payment,,276
+2026-10-10 09:45:31,ACC114750,3066,Amazon India,E-commerce,netbanking,DEV-BF4DC8,Lucknow,payment,,2366
+2026-10-10 09:45:47,ACC340751,1380,Myntra,Fashion,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:46:02,ACC968222,148,Local Kirana Store,Grocery,upi,DEV-79CACA,Ahmedabad,payment,,385
+2026-10-10 09:46:13,ACC745450,1264,Blinkit,Grocery,upi,DEV-A50351,Jaipur,payment,,349
+2026-10-10 09:46:30,ACC880183,103,Chai Point,Food & beverage,netbanking,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:46:39,ACC658122,80,Ola,Transport,upi,DEV-9586D7,Delhi,payment,,2506
+2026-10-10 09:46:46,ACC523390,282,Chai Point,Food & beverage,upi,DEV-084721,Delhi,payment,,314
+2026-10-10 09:46:51,ACC982642,5648,Tata CLiQ,E-commerce,card,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:47:08,ACC371575,543,Uber,Transport,upi,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:47:16,ACC481113,2875,Amazon India,E-commerce,card,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:47:22,ACC982642,711,Local Kirana Store,Grocery,card,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:47:30,ACC917695,489,Zomato,Food delivery,upi,DEV-02984B,Mumbai,payment,,1182
+2026-10-10 09:47:41,ACC667840,5000,Tanishq,Jewellery,card,DEV-AA9A09,Chennai,payment,,672
+2026-10-10 09:47:53,ACC982642,3278,Flipkart,E-commerce,card,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:48:00,ACC253757,275,Local Kirana Store,Grocery,upi,DEV-2009F4,Delhi,payment,,2775
+2026-10-10 09:48:06,ACC982642,3105,BigBasket,Grocery,upi,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:48:17,ACC667214,613,Flipkart,E-commerce,card,DEV-141748,Delhi,payment,,276
+2026-10-10 09:48:28,ACC572356,7989,Flipkart,E-commerce,card,DEV-F8F956,Delhi,payment,,438
+2026-10-10 09:48:37,ACC207991,546,Amazon India,E-commerce,card,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:48:54,ACC865804,392,Jio Recharge,Telecom,upi,DEV-71115B,Bengaluru,payment,,651
+2026-10-10 09:49:06,ACC371575,296,Zomato,Food delivery,card,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:49:14,ACC650134,26591,Tanishq,Jewellery,card,DEV-E84029,Pune,payment,,1902
+2026-10-10 09:49:25,ACC880183,4010,Amazon India,E-commerce,card,DEV-A0B620,Bengaluru,payment,,83
+2026-10-10 09:49:33,ACC865804,484,Swiggy,Food delivery,upi,DEV-DA17BA,Bengaluru,payment,,651
+2026-10-10 09:49:49,ACC661246,325,Flipkart,E-commerce,upi,DEV-2C9FAA,Pune,payment,,1273
+2026-10-10 09:50:04,ACC203258,1120,Blinkit,Grocery,upi,DEV-F1EF7A,Delhi,payment,,671
+2026-10-10 09:50:21,ACC865804,600,Swiggy,Food delivery,upi,DEV-DA17BA,Bengaluru,payment,,651
+2026-10-10 09:50:35,ACC942436,116,Local Kirana Store,Grocery,upi,DEV-1BFDE1,Ahmedabad,payment,,2399
+2026-10-10 09:50:50,ACC846860,299,Local Kirana Store,Grocery,netbanking,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:50:54,ACC114750,571,Zomato,Food delivery,upi,DEV-BF4DC8,Lucknow,payment,,2366
+2026-10-10 09:51:05,ACC371575,101,Chai Point,Food & beverage,netbanking,DEV-45E768,Chennai,payment,,1983
+2026-10-10 09:51:18,ACC846860,1174,BigBasket,Grocery,upi,DEV-FD979E,Bengaluru,payment,,1135
+2026-10-10 09:51:34,ACC207991,320,Flipkart,E-commerce,card,DEV-17C459,Mumbai,payment,,1013
+2026-10-10 09:51:46,ACC599751,85,Ola,Transport,upi,DEV-8E89AB,Hyderabad,payment,,684
+2026-10-10 09:51:58,ACC577822,172,Blinkit,Grocery,upi,DEV-923E24,Lucknow,payment,,1241
+2026-10-10 09:52:03,ACC865346,59,Local Kirana Store,Grocery,upi,DEV-712D09,Mumbai,payment,,2748
+2026-10-10 09:52:16,ACC481113,700,Jio Recharge,Telecom,upi,DEV-D74238,Delhi,payment,,588
+2026-10-10 09:52:24,ACC865804,939,Swiggy,Food delivery,upi,DEV-71115B,Bengaluru,payment,,651
+2026-10-10 09:52:39,ACC606827,266,Apollo Pharmacy,Health,upi,DEV-38D26A,Mumbai,payment,,170
+2026-10-10 09:52:50,ACC114750,1016,HP Petrol,Fuel,upi,DEV-BF4DC8,Lucknow,payment,,2366
+2026-10-10 09:53:03,ACC667840,2984,Amazon India,E-commerce,card,DEV-AA9A09,Chennai,payment,,672
+2026-10-10 09:53:19,ACC340751,156,Zomato,Food delivery,upi,DEV-2C45DA,Mumbai,payment,,1721
+2026-10-10 09:53:32,ACC238581,203,Uber,Transport,upi,DEV-F2DD23,Mumbai,payment,,2365
+2026-10-10 09:53:42,ACC327984,521,Zomato,Food delivery,upi,DEV-11B88A,Chennai,payment,,2752
+2026-10-10 09:53:56,ACC917695,343,Swiggy,Food delivery,upi,DEV-02984B,Mumbai,payment,,1182
+2026-10-10 09:54:02,ACC982642,91,Local Kirana Store,Grocery,netbanking,DEV-FE5E2B,Delhi,payment,,156
+2026-10-10 09:54:11,ACC968222,1557,Myntra,Fashion,card,DEV-79CACA,Ahmedabad,payment,,385

@@ -92,7 +92,7 @@ CSV with a header row, up to 5,000 rows. Column names are not case-sensitive.
 
 | Column | Required | Notes |
 |---|---|---|
-| `timestamp` | yes | Any format JavaScript can parse, for example `2026-10-10 09:00:00` or ISO 8601 |
+| `timestamp` | yes | For example `2026-10-10 09:00:00`. A time without a zone is used as written, on any server |
 | `accountId` | yes | |
 | `amount` | yes | INR, a positive number |
 | `merchant`, `merchantCategory`, `city`, `deviceId` | no | Used by the new-device, new-city, travel and refund rules |
@@ -102,6 +102,55 @@ CSV with a header row, up to 5,000 rows. Column names are not case-sensitive.
 | `isFraud` | no | `true`/`false` label; enables the caught and false-positive counts |
 
 Sample files (regenerate with `npm run samples`): `minimal-example.csv` (13 hand-editable rows), `normal-day.csv`, `card-testing-attack.csv`, `mixed-attacks.csv`.
+
+## Public dataset: Sparkov credit-card transactions
+
+The Analyze page also accepts the public **Credit Card Transactions Fraud Detection Dataset** (Kaggle, `kartik2112/fraud-detection`, licence CC0 public domain). It is synthetic, generated with the Sparkov simulator: 1.85 million card payments by about 1,000 US customers, each labelled fraud or not.
+
+- `client/public/samples/sparkov-credit-card-slice.csv` is a 4,335-row excerpt of its `fraudTest.csv`, ready to upload.
+- Files in the original Sparkov format are recognised automatically. Card numbers are reduced to `CARD-` plus their last 8 digits, amounts are converted from US dollars at a fixed ₹83, and the `fraud_` prefix is dropped from merchant names.
+- To cut a fresh excerpt, download `fraudTest.csv` from Kaggle and run `npm run dataset -- "C:\path\to\fraudTest.csv"`.
+
+**The excerpt is not a random sample.** It keeps 5 weeks of history for 30 defrauded cards and 14 clean ones, because the detector needs a card's earlier payments to judge later ones. Fraud is 0.39% of the full file and 6.8% of the excerpt.
+
+### What the data showed, and the rule it led to
+
+In `fraudTest.csv`, 82% of fraud happens between 22:00 and 04:00, the median fraud payment is $372 against $47 for normal payments, and a stolen card is typically used about 10 times over two days. Two rules were added for file analysis (`fileAnalysisConfig()` in `server/src/engine/detector.js`):
+
+- **Large payment late at night:** at least 3 times the card's typical payment and at least ₹20,000, between 22:00 and 04:00. On its own this is only a signal (25 points).
+- **Repeated within 24 hours:** a second such payment on the same card adds 35 points, which crosses the alert threshold of 60.
+
+### Measured result
+
+Scored over all 555,719 rows of `fraudTest.csv` (every card's full history, not the excerpt):
+
+| | |
+|---|---|
+| Fraud rows caught | 1,007 of 2,145 (46.9%) |
+| Fraud value caught | 63.4% |
+| Flags that were real fraud | 90.2% (110 false alarms among 553,574 normal payments) |
+
+Limits of this result, stated plainly:
+
+- The thresholds were chosen by looking at this same file, so the figures are optimistic. Splitting the cards into two halves gave 49.8% / 91.9% and 44.0% / 88.2%, which suggests they are stable, but they were not checked on the separate `fraudTrain.csv`.
+- The first fraudulent payment on a card is never flagged, because the rule needs a second one.
+- Fraud that is small or happens in the daytime (about half of it) is missed. Catching it would need more than two hand-written rules, for example a model trained on the labelled data.
+- The dataset is itself simulated, so this says nothing certain about real card fraud.
+
+## Defender and attacker views
+
+The two views show the same transactions and answer opposite questions.
+
+| | Defender | Attacker |
+|---|---|---|
+| Question | What did we catch? | What got past us? |
+| Headline numbers | Flagged, open alerts, detection rate, value protected | Undetected fraud, evasion rate, value lost |
+| Live feed highlights | Payments the detector flagged | Fraud the detector did not flag |
+| Who it is for | Analysts working the alert queue | Red team, or anyone reviewing the detector's blind spots |
+
+A detector looks good from the defender's side, because it only shows its successes. The attacker view uses the simulator's ground truth to show the failures, which is where improvement comes from. A typical use: launch a low-intensity attack in the Attack lab, switch to Attacker, see exactly which fraudulent payments were missed and what they scored, then decide which rule or threshold would have caught them.
+
+The attacker view needs ground truth, which only exists for simulated data and is only sent to the red-team and admin roles. An analyst never sees it, because a real analyst would not know which payments are fraud. It applies to the Overview and Live feed pages. The Analyze page shows the same idea differently: when a file has an `isFraud` column, the output reports fraud caught and missed.
 
 ## Public demo on GitHub Pages
 
@@ -217,4 +266,4 @@ Socket.io events (server → client): `tx` (batch of transactions), `alert`, `al
 - Spring Boot microservice
 - An attack-and-defend loop that auto-tunes the detector (built earlier, then removed to keep the app focused; it is in the git history)
 - Automated test suite
-- Real bank or card data integration
+- Real bank or card data integration (the Sparkov dataset is public and synthetic)

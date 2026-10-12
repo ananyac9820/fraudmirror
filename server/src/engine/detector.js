@@ -20,6 +20,9 @@ export function defaultDetectorConfig() {
       passThrough: 30, // funds forwarded right after being received
       firstTransaction: 10,
       refundRepeat: 35,
+      // Card-history rules. Off (0) for the live stream, switched on by fileAnalysisConfig()
+      nightSpend: 0, // unusually large payment late at night
+      nightRepeat: 0, // ...and not the first one on this account recently
     },
     params: {
       velocityWindowSec: 30,
@@ -37,8 +40,25 @@ export function defaultDetectorConfig() {
       refundWindowSec: 300,
       refundCount: 2,
       refundMinAmount: 2000,
+      nightStartHour: 22,
+      nightEndHour: 4,
+      nightMultiplier: 3, // "large" = this many times the account's typical payment...
+      nightMinAmount: 20000, // ...and at least this much
+      nightRepeatHours: 24,
+      baselineSize: 50, // payments used for the typical-payment baseline
     },
   };
+}
+
+/**
+ * Config for scoring uploaded files. These hold real-paced card histories (a few payments a day
+ * over weeks), unlike the simulator's compressed stream, so the two card-history rules are enabled.
+ * Their values were tuned on the public Sparkov credit-card dataset; see the README for the results.
+ */
+export function fileAnalysisConfig() {
+  const c = defaultDetectorConfig();
+  Object.assign(c.weights, { nightSpend: 25, nightRepeat: 35 });
+  return c;
 }
 
 // Which fraud pattern each rule is evidence for (used for the detector's "suspected pattern")
@@ -56,6 +76,8 @@ export const RULE_PATTERN = {
   passThrough: 'mule_chain',
   firstTransaction: 'mule_chain',
   refundRepeat: 'refund_abuse',
+  nightSpend: 'account_takeover',
+  nightRepeat: 'account_takeover',
 };
 
 const inr = (n) => `₹${Math.round(n).toLocaleString('en-IN')}`;
@@ -90,7 +112,7 @@ export class Detector {
   profile(accountId) {
     let p = this.profiles.get(accountId);
     if (!p) {
-      p = { devices: new Map(), cities: new Map(), avg: 0, n: 0, recent: [], last: null };
+      p = { devices: new Map(), cities: new Map(), avg: 0, n: 0, recent: [], last: null, base: [], baseSum: 0, nightLarge: [] };
       this.profiles.set(accountId, p);
     }
     return p;
@@ -145,6 +167,24 @@ export class Detector {
       hit('amountSpike', `Amount ${inr(tx.amount)} is ${Math.round(tx.amount / p.avg)}× the account average (${inr(p.avg)})`);
     }
 
+    // 5b. Large payments late at night, the signature of a stolen card being drained.
+    // One such payment is only a signal; a second within a day raises an alert.
+    let nightLarge = false;
+    let large = false;
+    if (w.nightSpend > 0 && tx.txType === 'payment') {
+      const typical = p.base.length >= 5 ? p.baseSum / p.base.length : null;
+      large = typical !== null && tx.amount >= P.nightMultiplier * typical && tx.amount >= P.nightMinAmount;
+      const d = new Date(ts);
+      const hour = d.getUTCHours(); // file timestamps are kept as wall-clock time
+      nightLarge = large && (hour >= P.nightStartHour || hour < P.nightEndHour);
+      if (nightLarge) {
+        const clock = `${String(hour).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}`;
+        hit('nightSpend', `Large payment late at night (${clock}): ${inr(tx.amount)} against a typical ${inr(typical)}`);
+        const earlier = p.nightLarge.filter((t) => ts - t <= P.nightRepeatHours * 3600000).length;
+        if (earlier > 0) hit('nightRepeat', `${earlier + 1} large late-night payments on this account within ${P.nightRepeatHours} hours`);
+      }
+    }
+
     // 6. Young accounts moving money (mule behaviour)
     if (tx.accountAgeDays != null && tx.accountAgeDays < P.newAccountDays) {
       hit('newAccount', `Account is only ${tx.accountAgeDays} day${tx.accountAgeDays === 1 ? '' : 's'} old`);
@@ -177,12 +217,12 @@ export class Detector {
       if (hits.some((h) => h[0] === 'microRepeat')) suspectedPattern = 'card_testing';
     }
 
-    this.learn(tx, ts, p, flagged);
+    this.learn(tx, ts, p, flagged, large, nightLarge);
     return { riskScore, reasons: hits.map((h) => h[2]), flagged, suspectedPattern };
   }
 
   /** Update the in-memory history after scoring. */
-  learn(tx, ts, p, flagged) {
+  learn(tx, ts, p, flagged, large = false, nightLarge = false) {
     p.recent.push({ ts, amount: tx.amount });
     p.recent = p.recent.filter((r) => ts - r.ts <= 10 * 60000).slice(-60);
     // The first device and city seen on an account are its baseline, not something "new"
@@ -190,6 +230,13 @@ export class Detector {
     if (!p.devices.has(tx.deviceId)) p.devices.set(tx.deviceId, seenAt);
     if (!p.cities.has(tx.city)) p.cities.set(tx.city, seenAt);
     p.last = { ts, city: tx.city };
+    if (nightLarge) p.nightLarge = [...p.nightLarge, ts].slice(-10);
+    if (this.config.weights.nightSpend > 0 && tx.txType === 'payment' && !large) {
+      // Typical-payment baseline: a plain average of recent payments, leaving out the large ones
+      p.base.push(tx.amount);
+      p.baseSum += tx.amount;
+      if (p.base.length > this.config.params.baselineSize) p.baseSum -= p.base.shift();
+    }
     if (!flagged && tx.txType === 'payment') {
       p.avg = p.n === 0 ? tx.amount : p.avg * 0.9 + tx.amount * 0.1;
     }

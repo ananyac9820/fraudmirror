@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { resultsToCsv } from '../../../server/src/engine/analyze.js';
 import { api } from '../lib/api';
-import { fmtDateTime, fmtINR, fmtINRCompact, fmtNum } from '../lib/format';
+import { fmtDateTime, fmtFileTime, fmtINR, fmtINRCompact, fmtNum } from '../lib/format';
 import { ATTACK_LABELS, type Analysis, type AnalysisListItem } from '../lib/types';
 import { Figures, NumberedList, PageHeader, Risk, Section, Skeleton, SkeletonRows } from '../components/ui';
 
@@ -10,6 +10,7 @@ const SAMPLES = [
   { file: 'normal-day.csv', note: '300 ordinary payments, almost nothing to flag' },
   { file: 'card-testing-attack.csv', note: 'ordinary traffic with one card-testing burst, labelled' },
   { file: 'mixed-attacks.csv', note: 'all six attack patterns, labelled' },
+  { file: 'sparkov-credit-card-slice.csv', note: 'excerpt of the public Sparkov credit-card dataset (CC0), labelled' },
 ];
 
 function download(name: string, text: string) {
@@ -118,7 +119,8 @@ export default function Analyze() {
             {error && <p className="mt-3 text-[14px] text-signal">{error}</p>}
             <p className="mt-6 text-[13px] leading-relaxed text-muted">
               Required columns: <span className="font-mono text-[12px] text-ink">timestamp, accountId, amount</span>. Optional:{' '}
-              <span className="font-mono text-[12px]">merchant, merchantCategory, channel, deviceId, city, txType, counterpartyId, accountAgeDays, isFraud</span>. Up to
+              <span className="font-mono text-[12px]">merchant, merchantCategory, channel, deviceId, city, txType, counterpartyId, accountAgeDays, isFraud</span>. Files in the public Sparkov
+              format (<span className="font-mono text-[12px]">trans_date_trans_time, cc_num, amt, is_fraud</span>) are also accepted as they are. Up to
               5,000 rows. Use synthetic or anonymised data only.
             </p>
           </div>
@@ -157,7 +159,7 @@ export default function Analyze() {
 
       {output && s && (
         <>
-          <Section title={`Output for ${output.name}`} aside={`${fmtDateTime(s.from)} to ${fmtDateTime(s.to)}`}>
+          <Section title={`Output for ${output.name}`} aside={`${fmtFileTime(s.from)} to ${fmtFileTime(s.to)}`}>
             <Figures
               items={[
                 { label: 'Rows scored', value: fmtNum(s.rows), note: `${fmtNum(s.accounts)} accounts${s.skipped ? `, ${s.skipped} rows skipped` : ''}` },
@@ -176,6 +178,12 @@ export default function Analyze() {
                   .map(([p, n]) => `${ATTACK_LABELS[p] || p} (${n})`)
                   .join(', ')}
                 .
+              </p>
+            )}
+            {s.amountsConvertedFromUsd && (
+              <p className="mt-3 text-[14px] text-muted">
+                Recognised as the Sparkov credit-card dataset. Amounts were converted from US dollars at ₹{s.amountsConvertedFromUsd} to the dollar, and card numbers are
+                shown by their last digits only.
               </p>
             )}
             {s.flagged === 0 && <p className="mt-8 text-[14px] text-muted">Nothing in this file reached the alert threshold.</p>}
@@ -221,7 +229,7 @@ export default function Analyze() {
                     <Fragment key={r.row}>
                       <tr onClick={() => setExpanded(expanded === r.row ? null : r.row)} className={`cursor-pointer hover:bg-surface ${r.flagged ? 'bg-signal/[0.07]' : ''}`}>
                         <td className="font-mono text-[12px] text-muted">{r.row}</td>
-                        <td className="font-mono text-[12px] text-muted">{fmtDateTime(r.timestamp)}</td>
+                        <td className="font-mono text-[12px] text-muted">{fmtFileTime(r.timestamp)}</td>
                         <td className="font-mono text-[12px]">{r.accountId}</td>
                         <td>{r.merchant}</td>
                         <td className="text-muted">{r.city}</td>

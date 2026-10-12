@@ -7,6 +7,8 @@ export const fmtNum = (n: number) => new Intl.NumberFormat('en-IN').format(n || 
 export const fmtPct = (n: number) => `${Math.round((n || 0) * 100)}%`;
 export const fmtTime = (s: string) =>
   new Date(s).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+/** For uploaded files: show the clock time exactly as written in the file, whatever the viewer's time zone. */
+export const fmtFileTime = (s: string) => new Date(s).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'medium', hour12: false, timeZone: 'UTC' });
 export const fmtDateTime = (s: string) =>
   new Date(s).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'medium', hour12: false });
 

@@ -12,7 +12,8 @@ fs.mkdirSync(outDir, { recursive: true });
 
 // A small pool so each account has enough history in the file for the detector to learn from
 const pool = buildAccountPool(40);
-const START = Date.parse('2026-10-10T09:00:00+05:30');
+// Timestamps are written as plain clock time (no time zone), starting at 09:00
+const START = Date.UTC(2026, 9, 10, 9, 0, 0);
 
 const cell = (v) => (v == null ? '' : /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
 
@@ -34,7 +35,7 @@ function build({ legit, attacks = [], labelled }) {
   if (labelled) cols.push('isFraud');
   const lines = rows.map((r) =>
     cols
-      .map((c) => (c === 'timestamp' ? new Date(r.ts).toISOString() : c === 'isFraud' ? (r.isFraud ? 'true' : 'false') : r[c]))
+      .map((c) => (c === 'timestamp' ? new Date(r.ts).toISOString().slice(0, 19).replace('T', ' ') : c === 'isFraud' ? (r.isFraud ? 'true' : 'false') : r[c]))
       .map(cell)
       .join(',')
   );
