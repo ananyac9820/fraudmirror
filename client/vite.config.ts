@@ -10,7 +10,7 @@ const spaFallback = (): Plugin => ({
   name: 'spa-404-fallback',
   apply: 'build',
   closeBundle() {
-    copyFileSync(resolve(__dirname, 'dist/index.html'), resolve(__dirname, 'dist/404.html'));
+    copyFileSync(resolve(import.meta.dirname, 'dist/index.html'), resolve(import.meta.dirname, 'dist/404.html'));
   },
 });
 

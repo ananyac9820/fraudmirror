@@ -70,4 +70,14 @@ await connectDB();
 await seedUsers();
 await engine.start(io);
 
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`
+[api] Port ${PORT} is already in use. Another copy of the server is probably still running.`);
+    console.error('      Close that terminal (or end its node.exe in Task Manager), then run the command again.
+');
+    process.exit(1);
+  }
+  throw err;
+});
 server.listen(PORT, () => console.log(`[api] FraudMirror server on http://localhost:${PORT}`));
