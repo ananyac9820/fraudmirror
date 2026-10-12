@@ -13,7 +13,7 @@ export const NAV: NavItem[] = [
   { to: '/feed', label: 'Live feed', roles: ALL },
   { to: '/alerts', label: 'Alerts', roles: ['analyst', 'admin'] },
   { to: '/attack-lab', label: 'Attack lab', roles: ['redteam', 'admin'] },
-  { to: '/loop', label: 'Loop', roles: ALL },
+  { to: '/analyze', label: 'Analyze file', roles: ALL },
 ];
 
 export const canAccess = (path: string, role?: Role) => {

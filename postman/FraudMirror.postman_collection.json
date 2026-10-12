@@ -5,13 +5,32 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "baseUrl", "value": "http://localhost:4000/api" },
-    { "key": "token", "value": "" },
-    { "key": "alertId", "value": "" }
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "alertId",
+      "value": ""
+    },
+    {
+      "key": "analysisId",
+      "value": ""
+    }
   ],
   "auth": {
     "type": "bearer",
-    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
   },
   "item": [
     {
@@ -34,11 +53,30 @@
             }
           ],
           "request": {
-            "auth": { "type": "noauth" },
+            "auth": {
+              "type": "noauth"
+            },
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@fraudmirror.dev\",\n  \"password\": \"demo123\"\n}" },
-            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@fraudmirror.dev\",\n  \"password\": \"demo123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
           }
         },
         {
@@ -46,20 +84,56 @@
           "event": [
             {
               "listen": "test",
-              "script": { "type": "text/javascript", "exec": ["pm.collectionVariables.set('token', pm.response.json().token);"] }
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('token', pm.response.json().token);"
+                ]
+              }
             }
           ],
           "request": {
-            "auth": { "type": "noauth" },
+            "auth": {
+              "type": "noauth"
+            },
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"email\": \"analyst@fraudmirror.dev\",\n  \"password\": \"demo123\"\n}" },
-            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"analyst@fraudmirror.dev\",\n  \"password\": \"demo123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
           }
         },
         {
           "name": "Current user",
-          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/auth/me", "host": ["{{baseUrl}}"], "path": ["auth", "me"] } }
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          }
         }
       ]
     },
@@ -72,9 +146,18 @@
             "method": "GET",
             "url": {
               "raw": "{{baseUrl}}/transactions?limit=50",
-              "host": ["{{baseUrl}}"],
-              "path": ["transactions"],
-              "query": [{ "key": "limit", "value": "50" }]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50"
+                }
+              ]
             }
           }
         },
@@ -84,11 +167,21 @@
             "method": "GET",
             "url": {
               "raw": "{{baseUrl}}/transactions?flagged=true&limit=20",
-              "host": ["{{baseUrl}}"],
-              "path": ["transactions"],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
               "query": [
-                { "key": "flagged", "value": "true" },
-                { "key": "limit", "value": "20" }
+                {
+                  "key": "flagged",
+                  "value": "true"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
               ]
             }
           }
@@ -99,11 +192,21 @@
             "method": "GET",
             "url": {
               "raw": "{{baseUrl}}/transactions?slipped=true&limit=20",
-              "host": ["{{baseUrl}}"],
-              "path": ["transactions"],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
               "query": [
-                { "key": "slipped", "value": "true" },
-                { "key": "limit", "value": "20" }
+                {
+                  "key": "slipped",
+                  "value": "true"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
               ]
             }
           }
@@ -132,26 +235,66 @@
             "method": "GET",
             "url": {
               "raw": "{{baseUrl}}/alerts?status=open&pattern=all",
-              "host": ["{{baseUrl}}"],
-              "path": ["alerts"],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alerts"
+              ],
               "query": [
-                { "key": "status", "value": "open" },
-                { "key": "pattern", "value": "all" }
+                {
+                  "key": "status",
+                  "value": "open"
+                },
+                {
+                  "key": "pattern",
+                  "value": "all"
+                }
               ]
             }
           }
         },
         {
           "name": "Get alert case file",
-          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/alerts/{{alertId}}", "host": ["{{baseUrl}}"], "path": ["alerts", "{{alertId}}"] } }
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/alerts/{{alertId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alerts",
+                "{{alertId}}"
+              ]
+            }
+          }
         },
         {
           "name": "Review alert",
           "request": {
             "method": "PATCH",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"decision\": \"confirmed_fraud\",\n  \"note\": \"Reviewed from Postman\"\n}" },
-            "url": { "raw": "{{baseUrl}}/alerts/{{alertId}}/review", "host": ["{{baseUrl}}"], "path": ["alerts", "{{alertId}}", "review"] }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"decision\": \"confirmed_fraud\",\n  \"note\": \"Reviewed from Postman\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/alerts/{{alertId}}/review",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alerts",
+                "{{alertId}}",
+                "review"
+              ]
+            }
           }
         }
       ]
@@ -163,31 +306,132 @@
           "name": "Launch attack",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"attackType\": \"card_testing\",\n  \"intensity\": \"high\"\n}" },
-            "url": { "raw": "{{baseUrl}}/attacks/launch", "host": ["{{baseUrl}}"], "path": ["attacks", "launch"] }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attackType\": \"card_testing\",\n  \"intensity\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/attacks/launch",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attacks",
+                "launch"
+              ]
+            }
           }
         },
         {
           "name": "List attack runs",
-          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/attacks", "host": ["{{baseUrl}}"], "path": ["attacks"] } }
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/attacks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attacks"
+              ]
+            }
+          }
         }
       ]
     },
     {
-      "name": "Loop",
+      "name": "Analysis (custom input and output)",
       "item": [
         {
-          "name": "Run loop round",
-          "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/loop/round", "host": ["{{baseUrl}}"], "path": ["loop", "round"] } }
+          "name": "Analyze a CSV",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status 201', () => pm.response.to.have.status(201));",
+                  "pm.collectionVariables.set('analysisId', pm.response.json()._id);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"postman-example.csv\",\n  \"csv\": \"timestamp,accountId,amount,merchant,city,deviceId\\n2026-10-10 09:00:00,ACC-1,450,Swiggy,Pune,phone-1\\n2026-10-10 10:00:00,ACC-1,900,Uber,Pune,phone-1\\n2026-10-10 11:00:00,ACC-1,52000,Croma,Chennai,laptop-x\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/analysis",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analysis"
+              ]
+            }
+          }
         },
         {
-          "name": "Get loop rounds",
-          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/loop/rounds", "host": ["{{baseUrl}}"], "path": ["loop", "rounds"] } }
+          "name": "List saved analyses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/analysis",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analysis"
+              ]
+            }
+          }
         },
         {
-          "name": "Reset loop",
-          "request": { "method": "POST", "url": { "raw": "{{baseUrl}}/loop/reset", "host": ["{{baseUrl}}"], "path": ["loop", "reset"] } }
+          "name": "Get analysis output",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/analysis/{{analysisId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analysis",
+                "{{analysisId}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Download output CSV",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/analysis/{{analysisId}}/export",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analysis",
+                "{{analysisId}}",
+                "export"
+              ]
+            }
+          }
         }
       ]
     },
@@ -196,11 +440,36 @@
       "item": [
         {
           "name": "Get stats",
-          "request": { "method": "GET", "url": { "raw": "{{baseUrl}}/stats", "host": ["{{baseUrl}}"], "path": ["stats"] } }
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stats"
+              ]
+            }
+          }
         },
         {
           "name": "Health check",
-          "request": { "auth": { "type": "noauth" }, "method": "GET", "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] } }
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          }
         }
       ]
     }

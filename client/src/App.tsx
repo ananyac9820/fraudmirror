@@ -9,7 +9,7 @@ import LiveFeed from './pages/LiveFeed';
 import Alerts from './pages/Alerts';
 import CaseDetail from './pages/CaseDetail';
 import AttackLab from './pages/AttackLab';
-import Loop from './pages/Loop';
+import Analyze from './pages/Analyze';
 import { Privacy, Terms } from './pages/Legal';
 
 function Protected({ children }: { children: ReactNode }) {
@@ -38,7 +38,7 @@ export default function App() {
         <Route path="/alerts" element={<Alerts />} />
         <Route path="/alerts/:id" element={<CaseDetail />} />
         <Route path="/attack-lab" element={<AttackLab />} />
-        <Route path="/loop" element={<Loop />} />
+        <Route path="/analyze" element={<Analyze />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>

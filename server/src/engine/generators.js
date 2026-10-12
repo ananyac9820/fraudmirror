@@ -4,7 +4,7 @@ export const ATTACK_TYPES = ['card_testing', 'account_takeover', 'velocity_burst
 
 /**
  * Attack parameters per intensity. "low" is deliberately stealthy so the
- * baseline detector misses it - that gives the Loop something to improve on.
+ * detector misses it, which is what the attacker view is there to show.
  */
 export const PRESETS = {
   card_testing: {

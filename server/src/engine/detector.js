@@ -1,8 +1,7 @@
 import { CITIES, distanceKm } from './data.js';
 
 /**
- * All detector knobs in one object. The live detector uses one copy; the Loop
- * tunes its own candidate copy in a sandbox.
+ * All detector knobs in one object, shared by the live stream and by file analysis.
  */
 export function defaultDetectorConfig() {
   return {
@@ -63,8 +62,14 @@ const inr = (n) => `₹${Math.round(n).toLocaleString('en-IN')}`;
 const secs = (ms) => (ms < 60000 ? `${Math.max(1, Math.round(ms / 1000))} s` : `${Math.round(ms / 60000)} min`);
 
 export class Detector {
-  constructor(config) {
+  /**
+   * @param config  weights and thresholds
+   * @param opts.coldStart  true when scoring an uploaded file: no account history is known up front,
+   *                        so an account's first row sets its baseline instead of raising a signal
+   */
+  constructor(config, opts = {}) {
     this.config = config;
+    this.coldStart = !!opts.coldStart;
     this.profiles = new Map(); // accountId -> profile (small in-memory history)
     this.refundsByMerchant = new Map(); // merchant -> [{ts, amount}]
     this.inbound = new Map(); // accountId -> {ts, amount} last incoming transfer
@@ -122,7 +127,7 @@ export class Detector {
       if (newDev) hit('newDevice', `New device ${tx.deviceId}`);
       if (newCity) hit('newCity', `New city for this account: ${tx.city}`);
       if (newDev && newCity) hit('deviceCityCombo', 'New device + new city');
-    } else {
+    } else if (!this.coldStart) {
       hit('firstTransaction', 'First transaction ever seen on this account');
     }
 
@@ -168,6 +173,8 @@ export class Detector {
       const byPattern = {};
       for (const [rule, pts] of hits) byPattern[RULE_PATTERN[rule]] = (byPattern[RULE_PATTERN[rule]] || 0) + pts;
       suspectedPattern = Object.entries(byPattern).sort((a, b) => b[1] - a[1])[0][0];
+      // Repeated micro-payments are the defining sign of card testing, even when the burst is also fast
+      if (hits.some((h) => h[0] === 'microRepeat')) suspectedPattern = 'card_testing';
     }
 
     this.learn(tx, ts, p, flagged);
@@ -178,8 +185,10 @@ export class Detector {
   learn(tx, ts, p, flagged) {
     p.recent.push({ ts, amount: tx.amount });
     p.recent = p.recent.filter((r) => ts - r.ts <= 10 * 60000).slice(-60);
-    if (!p.devices.has(tx.deviceId)) p.devices.set(tx.deviceId, ts);
-    if (!p.cities.has(tx.city)) p.cities.set(tx.city, ts);
+    // The first device and city seen on an account are its baseline, not something "new"
+    const seenAt = p.n === 0 ? 0 : ts;
+    if (!p.devices.has(tx.deviceId)) p.devices.set(tx.deviceId, seenAt);
+    if (!p.cities.has(tx.city)) p.cities.set(tx.city, seenAt);
     p.last = { ts, city: tx.city };
     if (!flagged && tx.txType === 'payment') {
       p.avg = p.n === 0 ? tx.amount : p.avg * 0.9 + tx.amount * 0.1;

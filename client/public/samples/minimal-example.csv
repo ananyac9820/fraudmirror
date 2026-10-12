@@ -1,0 +1,14 @@
+timestamp,accountId,amount,merchant,city,deviceId
+2026-10-10 09:00:00,ACC-RIYA,450,Swiggy,Pune,phone-riya
+2026-10-10 09:20:00,ACC-RIYA,1200,BigBasket,Pune,phone-riya
+2026-10-10 10:05:00,ACC-RIYA,320,Uber,Pune,phone-riya
+2026-10-10 10:40:00,ACC-ARJUN,899,Jio Recharge,Delhi,phone-arjun
+2026-10-10 11:15:00,ACC-ARJUN,2400,Amazon India,Delhi,phone-arjun
+2026-10-10 12:00:00,ACC-RIYA,640,Zomato,Pune,phone-riya
+2026-10-10 13:30:00,ACC-ARJUN,3,BookMyShow,Delhi,phone-arjun
+2026-10-10 13:30:04,ACC-ARJUN,5,BookMyShow,Delhi,phone-arjun
+2026-10-10 13:30:09,ACC-ARJUN,2,BookMyShow,Delhi,phone-arjun
+2026-10-10 13:30:13,ACC-ARJUN,7,BookMyShow,Delhi,phone-arjun
+2026-10-10 13:30:18,ACC-ARJUN,4,BookMyShow,Delhi,phone-arjun
+2026-10-10 14:10:00,ACC-RIYA,52000,Croma,Chennai,unknown-laptop
+2026-10-10 14:12:00,ACC-RIYA,48000,Tanishq,Chennai,unknown-laptop

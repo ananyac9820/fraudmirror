@@ -1,5 +1,8 @@
 import 'dotenv/config';
+import fs from 'fs';
 import http from 'http';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import { Server } from 'socket.io';
@@ -12,14 +15,14 @@ import transactionRoutes from './routes/transactions.js';
 import statsRoutes from './routes/stats.js';
 import alertRoutes from './routes/alerts.js';
 import attackRoutes from './routes/attacks.js';
-import loopRoutes from './routes/loop.js';
+import analysisRoutes from './routes/analysis.js';
 
 const PORT = process.env.PORT || 4000;
 if (!process.env.JWT_SECRET) console.log('[auth] JWT_SECRET not set - using the built-in development secret');
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '3mb' })); // uploaded CSVs arrive as JSON text
 
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date() }));
 app.use('/api/auth', authRoutes);
@@ -27,7 +30,20 @@ app.use('/api/transactions', transactionRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/alerts', alertRoutes);
 app.use('/api/attacks', attackRoutes);
-app.use('/api/loop', loopRoutes);
+app.use('/api/analysis', analysisRoutes);
+app.use('/api', (req, res) => res.status(404).json({ error: `No route for ${req.method} ${req.originalUrl}` }));
+
+// Full-stack single-service mode: `npm start` (or NODE_ENV=production) also serves the built React app,
+// so the UI, the REST API and Socket.io all share one origin.
+const clientDist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../client/dist');
+const serveClient = process.argv.includes('--serve-client') || process.env.NODE_ENV === 'production';
+if (serveClient && fs.existsSync(path.join(clientDist, 'index.html'))) {
+  app.use(express.static(clientDist));
+  app.get('*', (req, res) => res.sendFile(path.join(clientDist, 'index.html')));
+  console.log('[web] Serving the built client from client/dist');
+} else if (serveClient) {
+  console.log('[web] client/dist not found. Run `npm run build` first.');
+}
 
 app.use((err, req, res, next) => {
   console.error('[api]', err);

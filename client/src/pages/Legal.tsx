@@ -46,6 +46,12 @@ export function Privacy() {
         Every transaction, account number, device, merchant and city shown in FraudMirror is synthetic. The application does not collect, receive
         or process real card, bank, UPI or personal financial data. Please do not enter real financial information anywhere in the application.
       </p>
+      <h2>Files you upload</h2>
+      <p>
+        The Analyze page accepts a CSV file of transactions. Its rows and the detector’s output are stored on the server so they can be reopened
+        later, and are visible to anyone signed in to the same deployment. Upload synthetic or anonymised data only. Never upload real customer,
+        card or bank records.
+      </p>
       <h2>Account information</h2>
       <ul>
         <li>The platform uses three pre-created demo accounts. No sign-up is offered and no other user accounts are created.</li>
@@ -71,7 +77,7 @@ export function Privacy() {
       <h2>Retention</h2>
       <p>
         When run locally without a configured database, all data is held in memory and deleted whenever the server restarts. If an operator connects
-        a persistent MongoDB database, synthetic data stays there until they remove it.
+        a persistent MongoDB database, stream data is removed automatically after 24 hours and uploaded analyses stay until the operator removes them.
       </p>
       <h2>Contact</h2>
       <p>Questions about this project can be raised through the repository’s issue tracker on GitHub.</p>
@@ -90,12 +96,12 @@ export function Terms() {
       </p>
       <h2>Simulated attacks</h2>
       <p>
-        The Attack Lab and the Loop produce synthetic transaction patterns inside the simulator only. They do not interact with any external system.
+        The Attack Lab produces synthetic transaction patterns inside the simulator only. It does not interact with any external system.
         You may not use this project, or ideas taken from it, to attempt fraud or to test systems you are not authorised to test.
       </p>
       <h2>Acceptable use</h2>
       <ul>
-        <li>Do not enter real card numbers, bank details, passwords from other services, or personal data.</li>
+        <li>Do not enter or upload real card numbers, bank details, passwords from other services, or personal data.</li>
         <li>Do not attempt to disrupt, overload or gain unauthorised access to any deployment of the application.</li>
         <li>The demo accounts are shared. Anything you type into a case note may be visible to other people using the same deployment.</li>
       </ul>

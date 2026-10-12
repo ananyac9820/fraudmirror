@@ -20,4 +20,6 @@ const alertSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+alertSchema.index({ createdAt: 1 }, { expireAfterSeconds: 24 * 3600 }); // same lifetime as its transaction
+
 export default mongoose.model('Alert', alertSchema);

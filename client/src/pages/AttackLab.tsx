@@ -138,7 +138,7 @@ export default function AttackLab() {
             {done && (
               <p className="mt-8 text-[15px] text-muted">
                 {latest.detectedCount === 0
-                  ? 'The detector missed the entire attack. The Loop shows how the rules can adapt.'
+                  ? 'The detector missed the entire attack. Switch to the attacker view to see it in the feed.'
                   : `The detector flagged ${latest.detectedCount} of ${latest.count} transactions.`}
               </p>
             )}

@@ -1,13 +1,13 @@
 /**
  * In-browser stand-in for the Express + MongoDB + Socket.io server, used only by the
  * static GitHub Pages build (vite --mode pages). It reuses the server's own simulator,
- * detector and loop modules, and answers the same REST paths the real API serves.
+ * detector and file-analysis modules, and answers the same REST paths the real API serves.
  */
 import { buildAccountPool, pick, randInt, weightedPick } from '../../../server/src/engine/data.js';
 import { Detector, defaultDetectorConfig } from '../../../server/src/engine/detector.js';
 import { ATTACK_TYPES, PRESETS, generateAttack, makeNormalTx } from '../../../server/src/engine/generators.js';
-import { AttackDefendLoop } from '../../../server/src/engine/loop.js';
-import type { Alert, AttackRun, LoopRound, Role, Tx, User } from '../lib/types';
+import { analyzeCsv } from '../../../server/src/engine/analyze.js';
+import type { Alert, Analysis, AttackRun, Role, Tx, User } from '../lib/types';
 
 type Intensity = 'low' | 'medium' | 'high';
 type Listener = (event: string, payload: unknown) => void;
@@ -45,12 +45,11 @@ const newId = () => `${Date.now().toString(16)}${(++idSeq).toString(16).padStart
 const pool = buildAccountPool();
 const detector = new Detector(defaultDetectorConfig());
 detector.warm(pool);
-const loop = new AttackDefendLoop(pool);
 
 let txs: StoredTx[] = [];
 const alerts: StoredAlert[] = [];
 const runs: AttackRun[] = [];
-const rounds: LoopRound[] = [];
+const analyses: Analysis[] = [];
 let queue: Queued[] = [];
 let started = false;
 const listeners = new Set<{ role: Role; fn: Listener }>();
@@ -310,16 +309,23 @@ export async function demoRequest(method: string, path: string, body: Record<str
     }
   }
 
-  if (p === '/loop/rounds' && method === 'GET') return { rounds, config: loop.config, attackerParams: loop.attackerParams };
-  if (p === '/loop/round' && method === 'POST') {
-    const round = { _id: newId(), createdAt: new Date().toISOString(), ...loop.runRound() } as LoopRound;
-    rounds.push(round);
-    return { round, config: loop.config };
+  if (p === '/analysis' && method === 'GET') return analyses.map(({ results: _results, ...rest }) => rest).reverse();
+  if (p === '/analysis' && method === 'POST') {
+    if (typeof body?.csv !== 'string' || !body.csv.trim()) throw new DemoError(400, 'Send the file contents as "csv".');
+    let output;
+    try {
+      output = analyzeCsv(body.csv);
+    } catch (e) {
+      throw new DemoError(400, (e as Error).message);
+    }
+    const doc = { _id: newId(), name: String(body.name || 'Untitled upload').slice(0, 120), uploadedByName: user.name, createdAt: new Date().toISOString(), ...output } as unknown as Analysis;
+    analyses.push(doc);
+    return doc;
   }
-  if (p === '/loop/reset' && method === 'POST') {
-    rounds.length = 0;
-    loop.reset();
-    return { ok: true };
+  if (p.startsWith('/analysis/') && method === 'GET') {
+    const doc = analyses.find((a) => a._id === p.split('/')[2]);
+    if (!doc) throw new DemoError(404, 'Analysis not found');
+    return doc;
   }
 
   throw new DemoError(404, `No demo route for ${method} ${p}`);

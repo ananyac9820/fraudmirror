@@ -59,16 +59,47 @@ export interface AttackRun {
   detectedCount: number;
 }
 
-export interface LoopRound {
+export interface AnalysisRow {
+  row: number;
+  timestamp: string;
+  accountId: string;
+  amount: number;
+  merchant: string;
+  city: string;
+  channel: string;
+  txType: string;
+  label: boolean | null;
+  riskScore: number;
+  flagged: boolean;
+  suspectedPattern: string | null;
+  reasons: string[];
+}
+
+export interface AnalysisSummary {
+  rows: number;
+  skipped: number;
+  accounts: number;
+  from: string;
+  to: string;
+  totalAmount: number;
+  flagged: number;
+  flaggedAmount: number;
+  highestRisk: number;
+  byPattern: Record<string, number>;
+  labelled: { fraud: number; caught: number; falsePositives: number } | null;
+}
+
+export interface AnalysisListItem {
   _id: string;
-  generation: number;
-  attacksGenerated: number;
-  detected: number;
-  detectionRate: number;
-  falsePositiveRate: number;
-  perType: Record<string, { generated: number; detected: number; rate: number }>;
-  mutatedParams: { attacker: string[]; defender: string[] };
+  name: string;
+  uploadedByName: string;
   createdAt: string;
+  summary: AnalysisSummary;
+  warnings: string[];
+}
+
+export interface Analysis extends AnalysisListItem {
+  results: AnalysisRow[];
 }
 
 export const ATTACK_TYPES = [

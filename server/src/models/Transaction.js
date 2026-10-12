@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const transactionSchema = new mongoose.Schema({
   txId: { type: String, required: true, unique: true },
-  timestamp: { type: Date, required: true, index: true },
+  timestamp: { type: Date, required: true },
   accountId: { type: String, required: true, index: true },
   accountAgeDays: Number,
   merchant: String,
@@ -23,5 +23,9 @@ const transactionSchema = new mongoose.Schema({
   reasons: [String],
   suspectedPattern: { type: String, default: null },
 });
+
+// The simulator never stops, so a persistent database would grow without bound.
+// MongoDB removes stream data after 24 hours.
+transactionSchema.index({ timestamp: 1 }, { expireAfterSeconds: 24 * 3600 });
 
 export default mongoose.model('Transaction', transactionSchema);

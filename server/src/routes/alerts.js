@@ -3,8 +3,7 @@ import mongoose from 'mongoose';
 import Alert from '../models/Alert.js';
 import Transaction from '../models/Transaction.js';
 import { requireAuth, requireRole } from '../middleware/auth.js';
-import { sanitizeTx } from '../engine/engine.js';
-import { engine } from '../engine/engine.js';
+import { engine, sanitizeTx } from '../engine/engine.js';
 
 const router = Router();
 router.use(requireAuth, requireRole('analyst', 'admin'));
@@ -25,6 +24,7 @@ router.get('/:id', async (req, res) => {
   const alert = await Alert.findById(req.params.id).lean();
   if (!alert) return res.status(404).json({ error: 'Alert not found' });
   const tx = await Transaction.findById(alert.transactionId).lean();
+  if (!tx) return res.status(404).json({ error: 'The transaction behind this alert has expired' });
   const history = await Transaction.find({ accountId: alert.accountId, _id: { $ne: alert.transactionId } })
     .sort({ timestamp: -1 })
     .limit(10)
@@ -52,6 +52,7 @@ router.patch('/:id/review', async (req, res) => {
   ).lean();
   if (!alert) return res.status(404).json({ error: 'Alert not found' });
   const tx = await Transaction.findById(alert.transactionId).lean();
+  if (!tx) return res.status(404).json({ error: 'The transaction behind this alert has expired' });
   const correct = (decision === 'confirmed_fraud') === tx.isFraud;
   engine.io?.emit('alert:reviewed', { id: alert._id, status: alert.status });
   res.json({ alert, transaction: tx, groundTruth: { isFraud: tx.isFraud, attackType: tx.attackType }, correct });

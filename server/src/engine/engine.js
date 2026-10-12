@@ -29,7 +29,7 @@ export const alertFromTx = (t) => ({
 
 class Engine {
   constructor() {
-    this.config = defaultDetectorConfig(); // shared with the Loop, which tunes it
+    this.config = defaultDetectorConfig();
     this.pool = buildAccountPool();
     this.detector = new Detector(this.config);
     this.detector.warm(this.pool);
