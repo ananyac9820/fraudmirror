@@ -5,7 +5,7 @@ services:
     name: fraudmirror
     runtime: node
     plan: free
-    buildCommand: npm install --prefix server --omit=dev && npm install --prefix client && npm run build --prefix client
+    buildCommand: npm install --prefix server --omit=dev && npm install --prefix client --include=dev && npm run build --prefix client
     startCommand: npm run start:prod --prefix server
     healthCheckPath: /api/health
     envVars:

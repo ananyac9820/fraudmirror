@@ -80,11 +80,15 @@ Open **http://localhost:4000**. This is the production shape: a single origin, n
 
 ## Deploy the full stack (Render + MongoDB Atlas)
 
-`render.yaml` describes one free web service that runs everything. A hosted server needs a real database, because the in-memory MongoDB is a development-only dependency.
+`render.yaml` describes one free web service that runs everything: the React app, the REST API and Socket.io. A hosted server needs a real database, because the in-memory MongoDB is a development-only dependency.
 
-1. Create a free cluster at MongoDB Atlas, add a database user, allow access from anywhere (0.0.0.0/0), and copy the connection string.
-2. On Render choose **New > Blueprint**, connect the GitHub repository, and paste the connection string as `MONGO_URI` when asked. `JWT_SECRET` is generated for you.
-3. Wait for the first deploy. The app is then at the `onrender.com` address Render shows. Free instances sleep after 15 minutes without traffic and take about a minute to wake.
+1. **Database (MongoDB Atlas, free M0 cluster).** Create a cluster, then under *Database Access* add a user with a password, and under *Network Access* allow `0.0.0.0/0` (Render's addresses are not fixed). Copy the connection string from *Connect > Drivers* and put the database name before the `?`, for example `mongodb+srv://user:password@cluster0.xxxxx.mongodb.net/fraudmirror?retryWrites=true&w=majority`.
+2. **Web service (Render).** Sign in with GitHub, choose **New > Blueprint**, select the `fraudmirror` repository and apply. When asked for `MONGO_URI`, paste the string from step 1. `JWT_SECRET` is generated automatically.
+3. **Wait for the first deploy** (a few minutes). The app is then at the `onrender.com` address Render shows, with the same demo accounts.
+
+Free-plan behaviour: the service sleeps after 15 minutes without visitors and takes about a minute to wake on the next visit. Stream data expires after 24 hours; saved analyses are kept.
+
+Why not Vercel: Vercel runs code as short-lived functions, which cannot hold Socket.io connections open or keep the simulator running between requests. The app would need a different design there.
 
 ## Input file format
 
